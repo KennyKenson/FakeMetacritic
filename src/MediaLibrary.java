@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 public class MediaLibrary {
+
     ArrayList<Media> mediaList;
     ArrayList<Media> currentList;
     String DEFAULT_FILE = "media";
