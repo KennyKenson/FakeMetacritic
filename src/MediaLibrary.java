@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 public class MediaLibrary {
 
     ArrayList<Media> mediaList;
@@ -19,16 +20,16 @@ public class MediaLibrary {
         if (keyword.equals("MOVIE") || keyword.equals("TVSHOW") || keyword.equals("BOOK") || keyword.equals("VIDEOGAME")) {
             switch(keyword) {
                 case "MOVIE":
-                    for (Media media : currentList) {
-                        if (!(media instanceof Movie)) {
-                        }
-                    }
+                    currentList.removeIf(media -> !(media instanceof Movie));
                     break;
                 case "TVSHOW":
+                    currentList.removeIf(media -> !(media instanceof TvShow));
                     break;
                 case "BOOK":
+                    currentList.removeIf(media -> !(media instanceof Book));
                     break;
                 case "VIDEOGAME":
+                    currentList.removeIf(media -> !(media instanceof VideoGame));
                     break;
             }
         }
