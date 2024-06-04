@@ -13,6 +13,42 @@ abstract class Media {
     protected String publishing;
     protected ArrayList<String> tags;
 
+    public Media(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus, String description, String publishing){
+        this.id = id;
+        this.name = name;
+        this.review = review;
+        this.rating = rating;
+        this.targetAge = targetAge;
+        this.isLocked = isLocked;
+        this.watchedStatus = watchedStatus;
+        this.description = description;
+        this.publishing = publishing;
+    }
+
+    public Media(String id, String name){
+        this.id = id;
+        this.name = name;
+        this.review = "";
+        this.rating = -1;
+        this.targetAge = 0;
+        this.isLocked = false;
+        this.watchedStatus = 0;
+        this.description = "";
+        this.publishing = "";
+    }
+
+    public Media(){
+        this.id = "";
+        this.name = "";
+        this.review = "";
+        this.rating = -1;
+        this.targetAge = 0;
+        this.isLocked = false;
+        this.watchedStatus = 0;
+        this.description = "";
+        this.publishing = "";
+    }
+
 
     public String getId(){
         return id;
@@ -70,5 +106,5 @@ abstract class Media {
     abstract void addTag(String tag);
     abstract ArrayList<String> getTags();
     @Override
-    abstract String toString();
+    public abstract String toString();
 }
