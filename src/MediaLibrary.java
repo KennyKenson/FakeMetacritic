@@ -14,6 +14,22 @@ public class MediaLibrary {
     }
 
     public void filterMedia(String keyword) {
-
+        keyword = keyword.toUpperCase();
+        if (keyword.equals("MOVIE") || keyword.equals("TVSHOW") || keyword.equals("BOOK") || keyword.equals("VIDEOGAME")) {
+            switch(keyword) {
+                case "MOVIE":
+                    for (Media media : currentList) {
+                        if (!(media instanceof Movie)) {
+                        }
+                    }
+                    break;
+                case "TVSHOW":
+                    break;
+                case "BOOK":
+                    break;
+                case "VIDEOGAME":
+                    break;
+            }
+        }
     }
 }
