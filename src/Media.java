@@ -28,25 +28,25 @@ abstract class Media {
     public Media(String id, String name){
         this.id = id;
         this.name = name;
-        this.review = "";
+        this.review = "N/A";
         this.rating = -1;
         this.targetAge = 0;
         this.isLocked = false;
         this.watchedStatus = 0;
-        this.description = "";
-        this.publishing = "";
+        this.description = "N/A";
+        this.publishing = "N/A";
     }
 
     public Media(){
-        this.id = "";
-        this.name = "";
-        this.review = "";
+        this.id = "000000";
+        this.name = "N/A";
+        this.review = "N/A";
         this.rating = -1;
         this.targetAge = 0;
         this.isLocked = false;
         this.watchedStatus = 0;
-        this.description = "";
-        this.publishing = "";
+        this.description = "N/A";
+        this.publishing = "N/A";
     }
 
 
@@ -79,7 +79,7 @@ abstract class Media {
     }
     public void removeReview(){
         if (!isLocked) {
-            review = "";
+            review = "N/A";
         } else {
             System.out.println("The selected media is currently locked. Unlock in order to modify anything. ");
         }
