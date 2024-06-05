@@ -78,11 +78,7 @@ abstract class Media {
         return publishing;
     }
     public void removeReview(){
-        if (!isLocked) {
-            review = "";
-        } else {
-            System.out.println("The selected media is currently locked. Unlock in order to modify anything. ");
-        }
+        review = "";
     }
     public void removeRating(){
         rating = -1;

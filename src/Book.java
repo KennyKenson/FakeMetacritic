@@ -6,6 +6,13 @@ public class Book extends Media {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
     }
 
+    +getPages(): int
++getAuthor(): int
++toString(): String
++getTags(): ArrayList<String>
++allTags(): ArrayList<String
+
+
 
 
     @Override
