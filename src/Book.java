@@ -24,11 +24,18 @@ public class Book extends Media {
         this.author = "N/A";
     }
 
-    +getPages(): int
-+getAuthor(): int
-+toString(): String
-+getTags(): ArrayList<String>
-+allTags(): ArrayList<String
+    public int getPages(){
+        return pages
+    }
+    public int getAuthor(){
+        return author
+    }
+    public ArrayList<String> getTags(){
+        return super.tags;
+    }
+    public ArrayList<String> allTags(){
+        return
+    }
 
 
 

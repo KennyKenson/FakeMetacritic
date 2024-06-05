@@ -23,6 +23,7 @@ abstract class Media {
         this.watchedStatus = watchedStatus;
         this.description = description;
         this.publishing = publishing;
+        tags = new ArrayList<String>();
     }
 
     public Media(String id, String name){
@@ -35,6 +36,8 @@ abstract class Media {
         this.watchedStatus = 0;
         this.description = "N/A";
         this.publishing = "N/A";
+        tags = new ArrayList<String>();
+
     }
 
     public Media(){
@@ -47,6 +50,8 @@ abstract class Media {
         this.watchedStatus = 0;
         this.description = "N/A";
         this.publishing = "N/A";
+        tags = new ArrayList<String>();
+
     }
 
 
