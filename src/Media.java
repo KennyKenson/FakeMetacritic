@@ -109,7 +109,8 @@ abstract class Media {
     public ArrayList<String> getTags(){
         return tags;
     }
-    abstract void addTag(String tag);
+    public abstract void addTags(ArrayList<String> tags);
+    public abstract void addTag(String tag);
 
     @Override
     public abstract String toString();

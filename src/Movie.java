@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Movie extends Media{
+public class Movie extends Media {
 
     private int duration;
     private ArrayList<String> producers;
@@ -9,7 +9,9 @@ public class Movie extends Media{
     private ArrayList<String> starActors;
     private final String[] ALL_TAGS = {"help"};
 
-    public Movie(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus, String description, String publishing, int pages, String author, int duration, ArrayList<String> producers, String director, ArrayList<String> starActors){
+    public Movie(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
+                 String description, String publishing, int pages, String author, int duration,
+                 ArrayList<String> producers, String director, ArrayList<String> starActors) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
         this.duration = duration;
         this.producers = producers;
@@ -18,11 +20,11 @@ public class Movie extends Media{
 
     }
 
-    public Movie(String id, String name){
+    public Movie(String id, String name) {
         super(id, name);
     }
 
-    public Movie(){
+    public Movie() {
         super();
         this.duration = 0;
         this.producers = new ArrayList<>();
@@ -30,28 +32,33 @@ public class Movie extends Media{
         this.starActors = new ArrayList<>();
     }
 
-    public int getDuration(){
+    public int getDuration() {
         return duration;
     }
-    public ArrayList<String> getProducers(){
+
+    public ArrayList<String> getProducers() {
         return producers;
     }
-    public String getDirector(){
+
+    public String getDirector() {
         return director;
     }
-    public  ArrayList<String>getStarActors(){
+
+    public ArrayList<String> getStarActors() {
         return starActors;
     }
 
+    @Override
+    public void addTags(ArrayList<String> tags) {
+        for (String tag : tags) {
+            this.addTag(tag);
+        }
 
-    // work on this later cause idk what it does
-    public ArrayList<String> allTags(){
-        return null;
     }
 
     @Override
     public void addTag(String tag) {
-        if (Arrays.binarySearch(ALL_TAGS, tag) != -1){
+        if (Arrays.binarySearch(ALL_TAGS, tag) != -1) {
             tags.add(tag);
         }
 
@@ -63,7 +70,7 @@ public class Movie extends Media{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "";
     }
 }
