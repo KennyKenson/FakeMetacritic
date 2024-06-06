@@ -8,6 +8,11 @@ public class Main {
         } else {
             System.out.println("The selected media is currently locked. Unlock in order to modify anything. ");
         }*/
+
+        boolean run = true;
+        while (run){
+
+        }
     }
 
     public static void runTest() {
