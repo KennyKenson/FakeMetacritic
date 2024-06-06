@@ -170,4 +170,94 @@ public class MediaLibrary {
         }
         return null;
     }
+
+    public Media findMedia(String id) {
+        return searchMedia(id);
+    }
+
+    public void lockMedia(String id) {
+        Media media = searchMedia(id);
+        if (media.getIsLocked()) {
+            media.lockMedia(false);
+        } else {
+            media.lockMedia(true);
+        }
+    }
+
+    public void rateMedia(String id, int score) {
+        Media media = searchMedia(id);
+        if (score < 0) {
+            return; //Won't change value if parameter is invalid.
+        } else {
+            media.changeRating(score);
+        }
+    }
+
+    public void reviewMedia(String id, String review) {
+        Media media = searchMedia(id);
+        if (review.isEmpty()) {
+            return; //Won't change value if parameter is invalid.
+        } else {
+            media.changeReview(review);
+        }
+    }
+
+    public void removeRating(String id) {
+        Media media = searchMedia(id);
+        media.removeRating();
+    }
+
+    public void removeReview(String id) {
+        Media media = searchMedia(id);
+        media.removeReview();
+    }
+
+    public void setTargetAge(String id, String targetAge) {
+        Media media = searchMedia(id);
+        //media.changeTargetAge(targetAge); UNCOMMENT WHEN AADHYA ADDS THE METHOD.
+    }
+
+    public void resetCurrentList() {
+        currentList.clear();
+        currentList.addAll(mediaList);
+    }
+
+    public void removeMedia(String id) {
+        Media media = searchMedia(id);
+        mediaList.remove(media);
+        currentList.remove(media);
+    }
+
+    public void addMedia(Media newMedia) {
+        mediaList.add(newMedia);
+        //Won't add the media to currentList immediately.
+    }
+
+    public void printBooks() {
+        filterMedia("book");
+        for (Media book : currentList) {
+            System.out.println(book);
+        }
+    }
+
+    public void printTvShows() {
+        filterMedia("tvshow");
+        for (Media show : currentList) {
+            System.out.println(show);
+        }
+    }
+
+    public void printMovies() {
+        filterMedia("movie");
+        for (Media movie : currentList) {
+            System.out.println(movie);
+        }
+    }
+
+    public void printVideoGames() {
+        filterMedia("videogame");
+        for (Media videogame : currentList) {
+            System.out.println(videogame);
+        }
+    }
 }
