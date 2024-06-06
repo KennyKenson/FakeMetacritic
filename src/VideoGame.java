@@ -9,6 +9,11 @@ public class VideoGame extends Media {
     }
 
     @Override
+    public void addTags(ArrayList<String> tags) {
+
+    }
+
+    @Override
     public String toString() {
         return "";
     }

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+
 public class Main {
     static ArrayList<Integer> currentList = new ArrayList<>();
+
     public static void main(String[] args) {
         runTest();
         /*if (!isLocked) {
@@ -10,7 +12,7 @@ public class Main {
         }*/
 
         boolean run = true;
-        while (run){
+        while (run) {
 
         }
     }
@@ -30,7 +32,7 @@ public class Main {
 
     public static void sortMediaBy(ArrayList<Integer> currentList) {
         if (!(currentList.isEmpty() || currentList.size() == 1)) {
-            sortMediaBy(0, currentList.size()-1, currentList);
+            sortMediaBy(0, currentList.size() - 1, currentList);
         }
     }
 
@@ -54,25 +56,25 @@ public class Main {
             }
             System.out.println(currentList);
             currentList.set(left, pivot);
-            sortMediaBy(start, left-1, currentList);
-            sortMediaBy(right+1, end, currentList);
+            sortMediaBy(start, left - 1, currentList);
+            sortMediaBy(right + 1, end, currentList);
         }
     }
 
     public static int searchInt(int num, ArrayList<Integer> currentList) {
         int start = 0;
-        int end = currentList.size()-1;
+        int end = currentList.size() - 1;
         int midpoint;
 
         while (start <= end) {
-            midpoint = (start+end)/2;
+            midpoint = (start + end) / 2;
             System.out.println(midpoint);
             if (currentList.get(midpoint) == num) {
                 return currentList.get(midpoint);
             } else if (currentList.get(midpoint) < num) {
-                start = midpoint+1;
+                start = midpoint + 1;
             } else {
-                end = midpoint-1;
+                end = midpoint - 1;
             }
             System.out.println(start + " " + end);
         }
