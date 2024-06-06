@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Movie extends Media{
 
@@ -29,18 +30,40 @@ public class Movie extends Media{
         this.starActors = new ArrayList<>();
     }
 
-    @Override
-    void addTag(String tag) {
-
+    public int getDuration(){
+        return duration;
+    }
+    public ArrayList<String> getProducers(){
+        return producers;
+    }
+    public String getDirector(){
+        return director;
+    }
+    public  ArrayList<String>getStarActors(){
+        return starActors;
     }
 
-    @Override
-    ArrayList<String> getTags() {
+
+    // work on this later cause idk what it does
+    public ArrayList<String> allTags(){
         return null;
     }
 
     @Override
-    public String toString() {
+    public void addTag(String tag) {
+        if (Arrays.binarySearch(ALL_TAGS, tag) != -1){
+            tags.add(tag);
+        }
+
+    }
+
+    @Override
+    public ArrayList<String> getTags() {
         return null;
+    }
+
+    @Override
+    public String toString(){
+        return "";
     }
 }

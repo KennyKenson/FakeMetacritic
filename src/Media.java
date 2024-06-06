@@ -23,7 +23,7 @@ abstract class Media {
         this.watchedStatus = watchedStatus;
         this.description = description;
         this.publishing = publishing;
-        tags = new ArrayList<String>();
+        this.tags = new ArrayList<String>();
     }
 
     public Media(String id, String name){
@@ -36,8 +36,7 @@ abstract class Media {
         this.watchedStatus = 0;
         this.description = "N/A";
         this.publishing = "N/A";
-        tags = new ArrayList<String>();
-
+        this.tags = new ArrayList<String>();
     }
 
     public Media(){
@@ -50,8 +49,7 @@ abstract class Media {
         this.watchedStatus = 0;
         this.description = "N/A";
         this.publishing = "N/A";
-        tags = new ArrayList<String>();
-
+        this.tags = new ArrayList<String>();
     }
 
 
@@ -108,8 +106,11 @@ abstract class Media {
     public void lockMedia(boolean lock){
         isLocked = lock;
     }
+    public ArrayList<String> getTags(){
+        return tags;
+    }
     abstract void addTag(String tag);
-    abstract ArrayList<String> getTags();
+
     @Override
     public abstract String toString();
 }

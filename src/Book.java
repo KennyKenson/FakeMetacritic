@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Book extends Media {
 
@@ -30,23 +31,21 @@ public class Book extends Media {
     public int getAuthor(){
         return author
     }
-    public ArrayList<String> getTags(){
-        return super.tags;
-    }
+    // work on this later cause idk what it does
     public ArrayList<String> allTags(){
-        return
-    }
-
-
-
-
-    @Override
-    void addTag(String tag) {
-
+        return null;
     }
 
     @Override
-    ArrayList<String> getTags() {
+    public void addTag(String tag) {
+        if (Arrays.binarySearch(ALL_TAGS, tag) != -1){
+            tags.add(tag);
+        }
+
+    }
+
+    @Override
+    public ArrayList<String> getTags() {
         return null;
     }
 
