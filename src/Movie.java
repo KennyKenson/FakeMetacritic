@@ -4,14 +4,14 @@ import java.util.Arrays;
 public class Movie extends Media {
 
     private int duration;
-    private ArrayList<String> producers;
+    private String[] producers;
     private String director;
-    private ArrayList<String> starActors;
+    private String[] starActors;
     private final String[] ALL_TAGS = {"help"};
 
-    public Movie(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
-                 String description, String publishing, int pages, String author, int duration,
-                 ArrayList<String> producers, String director, ArrayList<String> starActors) {
+    public Movie(String id, String name, String review, int rating, int targetAge,
+                 boolean isLocked, int watchedStatus, String description, String publishing,
+                 int duration, String[] producers, String director, String[] starActors) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
         this.duration = duration;
         this.producers = producers;
@@ -27,16 +27,16 @@ public class Movie extends Media {
     public Movie() {
         super();
         this.duration = 0;
-        this.producers = new ArrayList<>();
+        this.producers = null;
         this.director = "N/A";
-        this.starActors = new ArrayList<>();
+        this.starActors = null;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public ArrayList<String> getProducers() {
+    public String[] getProducers() {
         return producers;
     }
 
@@ -44,7 +44,7 @@ public class Movie extends Media {
         return director;
     }
 
-    public ArrayList<String> getStarActors() {
+    public String[] getStarActors() {
         return starActors;
     }
 
