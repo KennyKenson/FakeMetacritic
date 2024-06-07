@@ -3,8 +3,9 @@ import java.util.Arrays;
 
 public class VideoGame extends Media {
 
-    int playtime;
-    String[] devs;
+    private int playtime;
+    private String[] devs;
+    private final String[] ALL_TAGS = {"help"};
 
     public VideoGame(String id, String name, String review, int rating, int targetAge,
                      boolean isLocked, int watchedStatus, String description, String publishing,
@@ -14,27 +15,18 @@ public class VideoGame extends Media {
         this.devs = devs;
     }
 
-    private int playtime;
-    private ArrayList<String> devs;
-    private final String[] ALL_TAGS = {"help"};
-    public VideoGame(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
-                     String description, String publishing, int pages, String author, String[] allTags) {
-        super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
-        ALL_TAGS = allTags;
-        this.pages = pages;
-        this.author = author;
-    }
+
 
     public VideoGame(String id, String name) {
         super(id, name);
-        this.pages = 0;
-        this.author = "N/A";
+        this.playtime = 0;
+        this.devs = null;
     }
 
     public VideoGame() {
         super();
-        this.pages = 0;
-        this.author = "N/A";
+        this.playtime = 0;
+        this.devs = null;
     }
     @Override
     public void addTags(ArrayList<String> tags) {

@@ -38,7 +38,7 @@ public class Book extends Media {
     public void addTag(String tag) {
         if (Arrays.binarySearch(ALL_TAGS, tag) != -1) {
             tags.add(tag);
-        }
+        } // if not, can we still add tag?
 
     }
 

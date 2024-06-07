@@ -3,6 +3,7 @@ import java.util.Arrays;
 
 public class TvShow extends Media {
 
+    private static final String[] ALL_TAGS = {"help"};
     int seasons;
     int episodes;
     String[] producers;
