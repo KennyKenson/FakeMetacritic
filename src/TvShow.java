@@ -33,4 +33,24 @@ public class TvShow extends Media {
     public String toString() {
         return "";
     }
+
+    public int getSeasons() {
+        return seasons;
+    }
+
+    public int getEpisodes() {
+        return episodes;
+    }
+
+    public String[] getProducers() {
+        return producers;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String[] getStarActors() {
+        return starActors;
+    }
 }
