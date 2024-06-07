@@ -43,11 +43,6 @@ public class Book extends Media {
     }
 
     @Override
-    public ArrayList<String> getTags() {
-        return null;
-    }
-
-    @Override
     public void addTags(ArrayList<String> tags) {
         for (String tag : tags) {
             this.addTag(tag);

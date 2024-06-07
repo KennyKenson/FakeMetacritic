@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TvShow extends Media {
 
@@ -17,15 +18,19 @@ public class TvShow extends Media {
         this.director = director;
         this.starActors = starActors;
     }
-    public void addTag(String tag) {
-    }
+    @Override
+    public void addTags(ArrayList<String> tags) {
+        for (String tag : tags) {
+            this.addTag(tag);
+        }
 
-    public ArrayList<String> getTags() {
-        return null;
     }
 
     @Override
-    public void addTags(ArrayList<String> tags) {
+    public void addTag(String tag) {
+        if (Arrays.binarySearch(ALL_TAGS, tag) != -1) {
+            tags.add(tag);
+        }
 
     }
 

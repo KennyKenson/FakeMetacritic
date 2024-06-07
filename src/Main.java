@@ -2,14 +2,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static ArrayList<Integer> currentList = new ArrayList<>();
+    static final String title = """
+                                            
+            ███████╗ █████╗ ██╗  ██╗███████╗    ███╗   ███╗███████╗████████╗ █████╗  ██████╗██████╗ ██╗████████╗██╗ ██████╗
+            ██╔════╝██╔══██╗██║ ██╔╝██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██║██╔════╝
+            █████╗  ███████║█████╔╝ █████╗      ██╔████╔██║█████╗     ██║   ███████║██║     ██████╔╝██║   ██║   ██║██║    \s
+            ██╔══╝  ██╔══██║██╔═██╗ ██╔══╝      ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║     ██╔══██╗██║   ██║   ██║██║    \s
+            ██║     ██║  ██║██║  ██╗███████╗    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╗██║  ██║██║   ██║   ██║╚██████╗
+            ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝ ╚═════╝""";
+    static ArrayList<Media> currentList = new ArrayList<>();
     static final String FILE_PATH = "src/";
     static final String DEFAULT_FILE = "mediaLib.csv";
     static final Scanner READER = new Scanner(System.in);
     static MediaLibrary mediaLib = null;
 
     public static void main(String[] args) {
-        runTest();
+        intro();
+//        runTest();
         /*if (!isLocked) {
             review = "";
         } else {
@@ -29,7 +38,7 @@ public class Main {
                 System.out.print("> ");
                 choice = READER.nextLine();
             } else {
-                System.out.println("Load file to ");
+                System.out.println("Load file to continue.");
                 choice = "1";
             }
 
@@ -71,11 +80,11 @@ public class Main {
                             filename = READER.nextLine();
                         }
                         System.out.println("Saving file...");
-                        success = mediaLib.exportMediaList(FILE_PATH + filename);
+//                        success = mediaLib.exportMediaList(FILE_PATH + filename);
                         if (success) {
-                            System.out.println("Staff list saved!");
+                            System.out.println("Media list saved!");
                         } else {
-                            System.out.println("Staff list not saved!");
+                            System.out.println("Media list not saved!");
                         }
                     }
                     System.out.println("");
@@ -83,6 +92,7 @@ public class Main {
                 }
 
                 case "3": {
+
                     break;
                 }
 
@@ -115,14 +125,14 @@ public class Main {
 
     }
 
-    public static void next(){
+    public static void next() {
         System.out.println();
         System.out.print("Press Enter to continue...");
         READER.nextLine();
         System.out.println();
     }
 
-    public static void intro(){
+    public static void intro() {
         System.out.println("Ladies, gentlemen, and Mr. Cho...");
         next();
         System.out.println("Aadhya and Ken presents...");
@@ -132,26 +142,76 @@ public class Main {
         System.out.println("Introducing.....");
         System.out.println("*insert drum roll effect here*");
         next();
-
+        System.out.println(title);
+        next();
 
     }
 
-    public static void printMenu(){
-        System.out.println("WIP");
+    public static void printMenu() {
+        /*important:
+         * add media
+         * remove media
+         * rate media
+         * review media
+         * remove rating
+         * remove review
+         * lock media
+         * get random media
+         * find media*/
+
+        /* change currentlist
+         * (if currentlist is empty, display all media)
+         * get all media
+         * filter media
+         *  - keyword
+         *  - age
+         *  - rating
+         * sort media
+         *  - name
+         *  - rating
+         *  - ID
+         *  - ascend/descend
+         * reset currentlist
+         * */
+
+        /*view all:
+         *print certain media
+         *   - book
+         *   - tvshow
+         *   - movie
+         *   - vid game
+         */
+
+        /*
+         * import
+         * export
+         */
+        if (mediaLib != null) {
+            System.out.println("-----Current List-----");
+            if (currentList.isEmpty()) {
+                currentList = mediaLib.getMediaList();
+            }
+            for (Media m : currentList) {
+                System.out.println(m);
+            }
+
+
+
+        }
     }
 
-    public static void runTest() {
-        MediaLibrary newLibrary = new MediaLibrary();
-        currentList.add(2);
-        currentList.add(9);
-        currentList.add(1);
-        currentList.add(10);
-        currentList.add(-2);
-        currentList.add(3);
-        System.out.println(currentList);
-        sortMediaBy(currentList);
-        System.out.println(searchInt(1, currentList));
-    }
+//    public static void runTest() {
+//        MediaLibrary newLibrary = new MediaLibrary();
+//        currentList.add(2);
+//        currentList.add(9);
+//        currentList.add(1);
+//        currentList.add(10);
+//        currentList.add(-2);
+//        currentList.add(3);
+//        System.out.println(currentList);
+//        sortMediaBy(currentList);
+//        System.out.println(searchInt(1, currentList));
+//    }
 
     public static void sortMediaBy(ArrayList<Integer> currentList) {
         if (!(currentList.isEmpty() || currentList.size() == 1)) {

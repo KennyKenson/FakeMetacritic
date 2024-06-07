@@ -65,11 +65,6 @@ public class Movie extends Media {
     }
 
     @Override
-    public ArrayList<String> getTags() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "";
     }
