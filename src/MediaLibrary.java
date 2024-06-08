@@ -173,10 +173,10 @@ public class MediaLibrary {
         return null;
     }
 
-    public Media findMedia(String name) {
+    public String findMedia(String name) {
         for (Media media : currentList) {
             if (name.equals(media.getName())) {
-                return media;
+                return media.getId();
             }
         }
         return null;
