@@ -15,7 +15,12 @@ public class VideoGame extends Media {
         this.devs = devs;
     }
 
-
+    public VideoGame(String id, String name, int age, String description, String publishing,
+                     int playtime, String[] devs) {
+        super(id, name, age, description, publishing);
+        this.playtime = playtime;
+        this.devs = devs;
+    }
 
     public VideoGame(String id, String name) {
         super(id, name);
@@ -47,6 +52,20 @@ public class VideoGame extends Media {
     @Override
     public String toString() {
         return "";
+    }
+
+    @Override
+    public void printDetails() {
+        String stars = "";
+        if (rating == -1){
+            stars = "No rating";
+        }
+        String age = "";
+        if (targetAge == 0){
+            age = "No age given";
+        }
+        System.out.printf("║%-18s║%-18s║ Video Game ║%-14s║%-12s║%-12s║%-9s║\n", name, id, age, stars, getWatchedStatus(), isLocked);
+
     }
 
     public int getPlaytime() {

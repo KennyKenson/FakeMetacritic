@@ -25,7 +25,16 @@ abstract class Media {
         this.watchedStatus = watchedStatus;
         this.description = description;
         this.publishing = publishing;
-        this.tags = new ArrayList<String>();
+        this.tags = new ArrayList<>();
+    }
+
+    public Media(String id, String name, int targetAge, String description, String publishing) {
+        this.id = id;
+        this.name = name;
+        this.targetAge = targetAge;
+        this.description = description;
+        this.publishing = publishing;
+        this.tags = new ArrayList<>();
     }
 
     public Media(String id, String name) {
@@ -38,7 +47,7 @@ abstract class Media {
         this.watchedStatus = 0;
         this.description = "N/A";
         this.publishing = "N/A";
-        this.tags = new ArrayList<String>();
+        this.tags = new ArrayList<>();
     }
 
     public Media() {
@@ -51,7 +60,7 @@ abstract class Media {
         this.watchedStatus = 0;
         this.description = "N/A";
         this.publishing = "N/A";
-        this.tags = new ArrayList<String>();
+        this.tags = new ArrayList<>();
     }
 
 
@@ -104,19 +113,7 @@ abstract class Media {
     }
 
     public void changeReview(String review) {
-
-        // this set of code changes commas (U+002C) into a single low-9 quotation mark (U+201A) (‚) so that the csv does
-        // not interpret the comma as a new column.
-        String review_diff_commas = "";
-        for (int i = 0; i < review.length(); i++) {
-            char c = review.charAt(i);
-            if (review.charAt(i) == ',') { // this is U+002C
-                c = '‚'; // this is U+201A
-            }
-            review_diff_commas += c;
-        }
-
-        this.review = review_diff_commas;
+        this.review = review;
     }
 
     public void changeRating(int score) {
@@ -145,4 +142,6 @@ abstract class Media {
 
     @Override
     public abstract String toString();
+
+    public abstract void printDetails();
 }

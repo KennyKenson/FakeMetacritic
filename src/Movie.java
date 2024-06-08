@@ -20,8 +20,21 @@ public class Movie extends Media {
 
     }
 
+    public Movie(String id, String name, int age, String description, String publishing, int duration,
+                 String[] producers, String director, String[] starActors) {
+        super(id, name, age, description, publishing);
+        this.duration = duration;
+        this.producers = producers;
+        this.director = director;
+        this.starActors = starActors;
+    }
+
     public Movie(String id, String name) {
         super(id, name);
+        this.duration = 0;
+        this.producers = null;
+        this.director = "N/A";
+        this.starActors = null;
     }
 
     public Movie() {
@@ -67,5 +80,19 @@ public class Movie extends Media {
     @Override
     public String toString() {
         return "";
+    }
+
+    @Override
+    public void printDetails() {
+        String stars = "";
+        if (rating == -1){
+            stars = "No rating";
+        }
+        String age = "";
+        if (targetAge == 0){
+            age = "No age given";
+        }
+        System.out.printf("║%-18s║%-18s║   Movie    ║%-14s║%-12s║%-12s║%-9s║\n", name, id, age, stars, getWatchedStatus(), isLocked);
+
     }
 }

@@ -20,6 +20,12 @@ public class Book extends Media {
         this.author = "N/A";
     }
 
+    public Book(String id, String name, String author, int pages, int age, String description, String publishing) {
+        super(id, name, age, description, publishing);
+        this.pages = pages;
+        this.author = author;
+    }
+
     public Book() {
         super();
         this.pages = 0;
@@ -50,7 +56,21 @@ public class Book extends Media {
     }
 
     @Override
+    public void printDetails(){
+        String stars = "";
+        if (rating == -1){
+            stars = "No rating";
+        }
+        String age = "";
+        if (targetAge == 0){
+            age = "No age given";
+        }
+        System.out.printf("║%-18s║%-18s║    Book    ║%-14s║%-12s║%-12s║%-9s║\n", name, id, age, stars, getWatchedStatus(), isLocked);
+    }
+
+    @Override
     public String toString() {
         return "";
+
     }
 }

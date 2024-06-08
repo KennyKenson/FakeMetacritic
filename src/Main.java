@@ -2,28 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static final String title = """
-                                            
-            ███████╗ █████╗ ██╗  ██╗███████╗    ███╗   ███╗███████╗████████╗ █████╗  ██████╗██████╗ ██╗████████╗██╗ ██████╗
-            ██╔════╝██╔══██╗██║ ██╔╝██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██║██╔════╝
-            █████╗  ███████║█████╔╝ █████╗      ██╔████╔██║█████╗     ██║   ███████║██║     ██████╔╝██║   ██║   ██║██║    \s
-            ██╔══╝  ██╔══██║██╔═██╗ ██╔══╝      ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║     ██╔══██╗██║   ██║   ██║██║    \s
-            ██║     ██║  ██║██║  ██╗███████╗    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╗██║  ██║██║   ██║   ██║╚██████╗
-            ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝ ╚═════╝""";
-    static ArrayList<Media> currentList = new ArrayList<>();
     static final String FILE_PATH = "src/";
     static final String DEFAULT_FILE = "mediaLib.csv";
     static final Scanner READER = new Scanner(System.in);
     static MediaLibrary mediaLib = null;
 
     public static void main(String[] args) {
+        mediaLib = new MediaLibrary();
+        mediaLib.addMedia(new Book("B1234567", "The Odyssey"));
+        mediaLib.addMedia(new Movie("M1234567", "Mulan"));
+        mediaLib.addMedia(new VideoGame("V1234567", "Undertale"));
+        mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad"));
         intro();
-//        runTest();
-        /*if (!isLocked) {
-            review = "";
-        } else {
-            System.out.println("The selected media is currently locked. Unlock in order to modify anything. ");
-        }*/
+
 
         String choice;
         String filename = "";
@@ -38,8 +29,8 @@ public class Main {
                 System.out.print("> ");
                 choice = READER.nextLine();
             } else {
-                System.out.println("Load file to continue.");
-                choice = "1";
+                System.out.println("No file has been detected in the system. Please load a file to continue.");
+                choice = "18";
             }
 
             switch (choice) {
@@ -50,6 +41,246 @@ public class Main {
                 }
 
                 case "1": {     // Load information from file.
+
+                    boolean invalid_choice = true;
+
+                    Media m = null;
+
+                    while (invalid_choice) {
+                        System.out.println("Select a media type to add:\n1 > Book\n2 > Movie\n3 > Video Game\n4 > TV Show");
+                        System.out.print("> ");
+                        choice = READER.nextLine();
+                        switch (choice) {
+                            case "1": {
+                                String id = "B";
+
+                                System.out.print("Enter the name of the book: ");
+                                String name = READER.nextLine();
+
+                                System.out.print("Enter the author of the book: ");
+                                String author = READER.nextLine();
+
+                                System.out.print("Enter the number of pages in the book: ");
+                                int pages = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the target age of the book: ");
+                                int age = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the book's description: ");
+                                String desc = READER.nextLine();
+
+                                System.out.print("Enter the book's publishing house: ");
+                                String pub_house = READER.nextLine();
+
+                                String tail_end = (Integer.toString(name.charAt(0)) +
+                                        Integer.toString(author.charAt(0)) + Integer.toString(pages).charAt(0) +
+                                        Integer.toString(age).charAt(0) + Integer.toString(desc.charAt(0)) +
+                                        Integer.toString(pub_house.charAt(0)));
+
+                                id += tail_end.toLowerCase();
+
+                                m = new Book(id, name, author, pages, age, desc, pub_house);
+
+                                invalid_choice = false;
+                                break;
+                            }
+                            case "2": {
+                                String id = "T";
+
+                                System.out.print("Enter the name of the movie: ");
+                                String name = READER.nextLine();
+
+                                System.out.print("Enter the target age of the movie: ");
+                                int age = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the movie's description: ");
+                                String desc = READER.nextLine();
+
+                                System.out.print("Enter the movie's studio: ");
+                                String studio = READER.nextLine();
+
+                                System.out.print("Enter the duration of the movie: ");
+                                int duration = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the movie's director(s): ");
+                                String director = READER.nextLine();
+
+                                String[] producers = {};// create a method to get string arrays
+
+                                String[] starActors = {};// create a method to get string arrays
+
+                                String tail_end = (Integer.toString(name.charAt(0)) +
+                                        Integer.toString(director.charAt(0)) + Integer.toString(duration).charAt(0) +
+                                        Integer.toString(age).charAt(0) + Integer.toString(desc.charAt(0)) +
+                                        Integer.toString(studio.charAt(0)));
+
+                                id += tail_end.toLowerCase();
+
+                                m = new Movie(id, name, age, desc, studio, duration, producers, director, starActors);
+                                invalid_choice = false;
+                                break;
+                            }
+                            case "3": {
+                                String id = "V";
+
+                                System.out.print("Enter the name of the video game: ");
+                                String name = READER.nextLine();
+
+                                System.out.print("Enter the target age of the video game: ");
+                                int age = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the video game's description: ");
+                                String desc = READER.nextLine();
+
+                                System.out.print("Enter the video game's studio: ");
+                                String studio = READER.nextLine();
+
+                                System.out.print("Enter the expected duration of the video game: ");
+                                int playtime = Integer.parseInt(READER.nextLine());
+
+                                String[] devs = {"help"};// create a method to get string arrays
+
+                                String tail_end = (Integer.toString(name.charAt(0)) +
+                                        Integer.toString(devs[0].charAt(0)) +
+                                        Integer.toString(playtime).charAt(0) + Integer.toString(age).charAt(0) +
+                                        Integer.toString(desc.charAt(0)) + Integer.toString(studio.charAt(0)));
+
+                                id += tail_end.toLowerCase();
+
+                                m = new VideoGame(id, name, age, desc, studio, playtime, devs);
+                                invalid_choice = false;
+                                break;
+                            }
+                            case "4": {
+                                String id = "T";
+
+                                System.out.print("Enter the name of the TV show: ");
+                                String name = READER.nextLine();
+
+                                System.out.print("Enter the target age of the TV show: ");
+                                int age = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the TV show's description: ");
+                                String desc = READER.nextLine();
+
+                                System.out.print("Enter the TV show's studio: ");
+                                String studio = READER.nextLine();
+
+                                System.out.print("Enter the number of seasons in the TV show: ");
+                                int seasons = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the number of episodes in the TV show: ");
+                                int episodes = Integer.parseInt(READER.nextLine());
+
+                                System.out.print("Enter the TV show's director(s): ");
+                                String director = READER.nextLine();
+
+                                String[] producers = {};// create a method to get string arrays
+
+                                String[] starActors = {};// create a method to get string arrays
+
+                                String tail_end = (Integer.toString(name.charAt(0)) +
+                                        Integer.toString(director.charAt(0)) + Integer.toString(seasons).charAt(0) +
+                                        Integer.toString(age).charAt(0) + Integer.toString(desc.charAt(0)) +
+                                        Integer.toString(studio.charAt(0)));
+
+                                id += tail_end.toLowerCase();
+
+                                m = new TvShow(id, name, age, desc, studio, seasons, episodes, producers, director, starActors);
+                                invalid_choice = false;
+                                break;
+                            }
+                            default: {
+                                System.out.println("Invalid choice. Try again. ");
+                            }
+                        }
+                    }
+
+                    mediaLib.addMedia(m);
+                    break;
+                }
+
+                case "2": {
+                    System.out.println("WIP2");
+                    break;
+                }
+
+                case "3": {
+                    System.out.println("WIP3");
+                    break;
+                }
+
+                case "4": {
+                    System.out.println("WIP4");
+                    break;
+                }
+
+                case "5": {
+                    System.out.println("WIP5");
+                    break;
+                }
+
+                case "6": {
+                    System.out.println("WIP6");
+                    break;
+                }
+
+                case "7": {
+                    System.out.println("WIP7");
+                    break;
+                }
+
+                case "8": {
+                    System.out.println("WIP8");
+                    break;
+                }
+
+                case "9": {
+                    System.out.println("WIP9");
+                    break;
+                }
+
+                case "10": {
+                    System.out.println("WIP10");
+                    break;
+                }
+
+                case "11": {
+                    System.out.println("WIP11");
+                    break;
+                }
+
+                case "12": {
+                    System.out.println("WIP12");
+                    break;
+                }
+
+                case "13": {
+                    System.out.println("WIP13");
+                    break;
+                }
+
+                case "14": {
+                    System.out.println("WIP14");
+                    break;
+                }
+
+                case "15": {
+                    System.out.println("WIP15");
+                    break;
+                }
+
+                case "16": {
+                    System.out.println("WIP16");
+                    break;
+                }
+
+                case "17": {
+                    System.out.println("WIP17");
+                    break;
+                }
+
+                case "18": {
                     success = false;
                     mediaLib = new MediaLibrary();
                     while (!success) {
@@ -60,8 +291,7 @@ public class Main {
                         }
                         success = mediaLib.importMediaList(FILE_PATH + filename);
                         if (success) {
-                            System.out.println("Media successfully loaded. ");
-                            System.out.println("");
+                            System.out.println("Media successfully loaded.\n ");
                         } else {
                             System.out.println("Media unsuccessfully loaded. ");
                         }
@@ -69,7 +299,7 @@ public class Main {
                     break;
                 }
 
-                case "2": {     // Save information to file.
+                case "19": {
                     success = false;
                     while (!success) {
                         System.out.print("Do you want to use the same filename ("
@@ -80,39 +310,14 @@ public class Main {
                             filename = READER.nextLine();
                         }
                         System.out.println("Saving file...");
-//                        success = mediaLib.exportMediaList(FILE_PATH + filename);
+                        success = mediaLib.exportMediaList(FILE_PATH + filename);
                         if (success) {
                             System.out.println("Media list saved!");
                         } else {
                             System.out.println("Media list not saved!");
                         }
                     }
-                    System.out.println("");
-                    break;
-                }
-
-                case "3": {
-
-                    break;
-                }
-
-                case "4": {
-                    break;
-                }
-
-                case "5": {
-                    break;
-                }
-
-                case "6": {
-                    break;
-                }
-
-                case "7": {
-                    break;
-                }
-
-                case "8": {
+                    System.out.println();
                     break;
                 }
 
@@ -142,125 +347,58 @@ public class Main {
         System.out.println("Introducing.....");
         System.out.println("*insert drum roll effect here*");
         next();
-        System.out.println(title);
+        System.out.println("""
+                                            
+            ███████╗ █████╗ ██╗  ██╗███████╗    ███╗   ███╗███████╗████████╗ █████╗  ██████╗██████╗ ██╗████████╗██╗ ██████╗
+            ██╔════╝██╔══██╗██║ ██╔╝██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██║██╔════╝
+            █████╗  ███████║█████╔╝ █████╗      ██╔████╔██║█████╗     ██║   ███████║██║     ██████╔╝██║   ██║   ██║██║    \s
+            ██╔══╝  ██╔══██║██╔═██╗ ██╔══╝      ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║     ██╔══██╗██║   ██║   ██║██║    \s
+            ██║     ██║  ██║██║  ██╗███████╗    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╗██║  ██║██║   ██║   ██║╚██████╗
+            ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝ ╚═════╝""");
         next();
 
     }
 
     public static void printMenu() {
-        /*important:
-         * add media
-         * remove media
-         * rate media
-         * review media
-         * remove rating
-         * remove review
-         * lock media
-         * get random media
-         * find media*/
-
-        /* change currentlist
-         * (if currentlist is empty, display all media)
-         * get all media
-         * filter media
-         *  - keyword
-         *  - age
-         *  - rating
-         * sort media
-         *  - name
-         *  - rating
-         *  - ID
-         *  - ascend/descend
-         * reset currentlist
-         * */
-
-        /*view all:
-         *print certain media
-         *   - book
-         *   - tvshow
-         *   - movie
-         *   - vid game
-         */
-
-        /*
-         * import
-         * export
-         */
         if (mediaLib != null) {
-            System.out.println("-----Current List-----");
+
+            ArrayList<Media> currentList = mediaLib.currentList;
+
             if (currentList.isEmpty()) {
-                currentList = mediaLib.getMediaList();
+                System.out.println("Current list has no elements. Retrieving information from media library");
+                mediaLib.currentList = mediaLib.getMediaList();
+                currentList = mediaLib.currentList;
             }
+            System.out.println("""
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                        Current List Of Media                                        ║
+╠══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦════════════╦═════════╣
+║       Name       ║        ID        ║    Type    ║  Age Rating  ║   Rating   ║   Status   ║ Locked? ║
+╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬════════════╬═════════╣"""
+           );
             for (Media m : currentList) {
-                System.out.println(m);
+
+                m.printDetails();
             }
 
+            System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩════════════╩═════════╝");
 
+            System.out.println("""
+Select an option:
 
+ --Media Handling--           --Edit Current List--           --View All--           --Import/Export--
+  1 > add media               10 > filter media	              14 > Books	         18 > Import
+  2 > remove media            11 > keyword		              15 > TV Shows	         19 > Export
+  3 > rate media	          12 > sort media		          16 > Movies
+  4 > review media            13 > reset Current List         17 > Video Games
+  5 > remove rating
+  6 > remove review
+  7 > lock media
+  8 > get random media
+  9 > find media
+  
+  0 > exit
+ """);
         }
-    }
-
-//    public static void runTest() {
-//        MediaLibrary newLibrary = new MediaLibrary();
-//        currentList.add(2);
-//        currentList.add(9);
-//        currentList.add(1);
-//        currentList.add(10);
-//        currentList.add(-2);
-//        currentList.add(3);
-//        System.out.println(currentList);
-//        sortMediaBy(currentList);
-//        System.out.println(searchInt(1, currentList));
-//    }
-
-    public static void sortMediaBy(ArrayList<Integer> currentList) {
-        if (!(currentList.isEmpty() || currentList.size() == 1)) {
-            sortMediaBy(0, currentList.size() - 1, currentList);
-        }
-    }
-
-    public static void sortMediaBy(int start, int end, ArrayList<Integer> currentList) {
-        if (start < end) {
-            int pivot = currentList.get(start);
-            int left = start;
-            int right = end;
-
-            while (left < right) {
-
-                while (currentList.get(right).compareTo(pivot) >= 0 && left < right) {
-                    right--;
-                }
-                currentList.set(left, currentList.get(right));
-
-                while (currentList.get(left).compareTo(pivot) <= 0 && left < right) {
-                    left++;
-                }
-                currentList.set(right, currentList.get(left));
-            }
-            System.out.println(currentList);
-            currentList.set(left, pivot);
-            sortMediaBy(start, left - 1, currentList);
-            sortMediaBy(right + 1, end, currentList);
-        }
-    }
-
-    public static int searchInt(int num, ArrayList<Integer> currentList) {
-        int start = 0;
-        int end = currentList.size() - 1;
-        int midpoint;
-
-        while (start <= end) {
-            midpoint = (start + end) / 2;
-            System.out.println(midpoint);
-            if (currentList.get(midpoint) == num) {
-                return currentList.get(midpoint);
-            } else if (currentList.get(midpoint) < num) {
-                start = midpoint + 1;
-            } else {
-                end = midpoint - 1;
-            }
-            System.out.println(start + " " + end);
-        }
-        return -1;
     }
 }
