@@ -62,17 +62,16 @@ public class MediaLibrary {
 
             while (left < right) {
 
-                while (currentList.get(right).getRating() >= pivot.getRating()) {
+                while (currentList.get(right).getRating() >= pivot.getRating() && left < right) {
                     right--;
                 }
                 currentList.set(left, currentList.get(right));
 
-                while (currentList.get(left).getRating() <= pivot.getRating()) {
+                while (currentList.get(left).getRating() <= pivot.getRating() && left < right) {
                     left++;
                 }
                 currentList.set(right, currentList.get(left));
             }
-
             currentList.set(left, pivot);
 
             sortMediaByRating(start, left-1);
@@ -94,12 +93,12 @@ public class MediaLibrary {
 
             while (left < right) {
 
-                while (currentList.get(right).getName().compareTo(pivot.getName()) >= 0) {
+                while (currentList.get(right).getName().compareTo(pivot.getName()) >= 0 && left < right) {
                     right--;
                 }
                 currentList.set(left, currentList.get(right));
 
-                while (currentList.get(left).getName().compareTo(pivot.getName()) <= 0) {
+                while (currentList.get(left).getName().compareTo(pivot.getName()) <= 0 && left < right) {
                     left++;
                 }
                 currentList.set(right, currentList.get(left));
@@ -107,8 +106,8 @@ public class MediaLibrary {
 
             currentList.set(left, pivot);
 
-            sortMediaByRating(start, left-1);
-            sortMediaByRating(right+1, end);
+            sortMediaByName(start, left-1);
+            sortMediaByName(right+1, end);
         }
     }
 
@@ -126,12 +125,12 @@ public class MediaLibrary {
 
             while (left < right) {
 
-                while (currentList.get(right).getId().compareTo(pivot.getId()) >= 0) {
+                while (currentList.get(right).getId().compareTo(pivot.getId()) >= 0 && left < right) {
                     right--;
                 }
                 currentList.set(left, currentList.get(right));
 
-                while (currentList.get(left).getId().compareTo(pivot.getId()) <= 0) {
+                while (currentList.get(left).getId().compareTo(pivot.getId()) <= 0 && left < right) {
                     left++;
                 }
                 currentList.set(right, currentList.get(left));
@@ -139,8 +138,8 @@ public class MediaLibrary {
 
             currentList.set(left, pivot);
 
-            sortMediaByRating(start, left-1);
-            sortMediaByRating(right+1, end);
+            sortMediaById(start, left-1);
+            sortMediaById(right+1, end);
         }
     }
 
@@ -175,7 +174,7 @@ public class MediaLibrary {
 
     public String findMedia(String name) {
         for (Media media : currentList) {
-            if (name.equals(media.getName())) {
+            if (name.equalsIgnoreCase(media.getName())) {
                 return media.getId();
             }
         }
