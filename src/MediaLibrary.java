@@ -284,8 +284,7 @@ public class MediaLibrary {
         int targetAge;
         String description;
         String publishing;
-        String tag; //This variable is looped multiple times to insert all tags into the imported Media object.
-                    //Also located at the very end of the line.
+        String[] tags;
 
         //For books
         int pages;
@@ -324,8 +323,9 @@ public class MediaLibrary {
                     case "B":
                         pages = Integer.parseInt(mediaInfo[7]);
                         author = mediaInfo[8];
-                        currentList.add(new Book(id, name, review, rating, targetAge,
+                        mediaList.add(new Book(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, pages, author));
+                        tags = mediaInfo[9].split("_");
                         break;
                     case "T":
                         seasons = Integer.parseInt(mediaInfo[7]);
@@ -333,25 +333,36 @@ public class MediaLibrary {
                         producers = mediaInfo[9].split("_");
                         director = mediaInfo[10];
                         starActors = mediaInfo[11].split("_");
-                        currentList.add(new TvShow(id, name, review, rating, targetAge,
+                        mediaList.add(new TvShow(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 seasons, episodes,producers, director, starActors));
+                        tags = mediaInfo[12].split("_");
                         break;
                     case "M":
                         duration = Integer.parseInt(mediaInfo[7]);
                         producers = mediaInfo[8].split("_");
                         director = mediaInfo[9];
                         starActors = mediaInfo[10].split("_");
-                        currentList.add(new Movie(id, name, review, rating, targetAge,
+                        mediaList.add(new Movie(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, duration, producers,
                                 director, starActors));
+                        tags = mediaInfo[11].split("_");
                         break;
                     case "V":
                         playtime = Integer.parseInt(mediaInfo[7]);
                         devs = mediaInfo[8].split("_");
-                        currentList.add( new VideoGame(id, name, review, rating, targetAge,
+                        mediaList.add(new VideoGame(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 playtime, devs));
+                        tags = mediaInfo[9].split("_");
+                        break;
+                    //Need to initialize 'tags' in default so next for-loop works.
+                    default:
+                        tags = new String[0];
+                }
+                for (String tag : tags) {
+                    resetCurrentList();
+                    searchMedia(id).tags.add(tag);
                 }
                 line = reader.readLine();
             }
@@ -439,6 +450,13 @@ public class MediaLibrary {
                                 writer.write(dev + "_");
                             }
                         }
+                }
+                for (String tag : media.getTags()) {
+                    if (media.getTags().indexOf(tag) == media.getTags().size()-1) {
+                        writer.write(tag);
+                    } else {
+                        writer.write(tag + "_");
+                    }
                 }
                 writer.write("\n");
             }
