@@ -3,16 +3,16 @@ import java.util.Arrays;
 
 public class TvShow extends Media {
 
-    private static final String[] ALL_TAGS = {"help"};
     int seasons;
     int episodes;
-    String[] producers;
+    ArrayList<String> producers;
     String director;
-    String[] starActors;
+    ArrayList<String> starActors;
+    private static final String[] ALL_TAGS = {"help"};
 
     public TvShow(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
-                String description, String publishing, int seasons, int episodes, String[] producers, String director,
-                  String[] starActors) {
+                String description, String publishing, int seasons, int episodes, ArrayList<String> producers, String director,
+                  ArrayList<String> starActors) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
         this.seasons = seasons;
         this.episodes = episodes;
@@ -22,7 +22,7 @@ public class TvShow extends Media {
     }
 
     public TvShow(String id, String name, int age, String description, String publishing, int seasons, int episodes,
-                  String[] producers, String director, String[] starActors) {
+                  ArrayList<String> producers, String director, ArrayList<String> starActors) {
         super(id, name, age, description, publishing);
         this.seasons = seasons;
         this.episodes = episodes;
@@ -35,18 +35,18 @@ public class TvShow extends Media {
         super(id, name);
         this.seasons = 0;
         this.episodes = 0;
-        this.producers = null;
+        this.producers = new ArrayList<>();
         this.director = "N/A";
-        this.starActors = null;
+        this.starActors = new ArrayList<>();
     }
 
     public TvShow() {
         super();
         this.seasons = 0;
         this.episodes = 0;
-        this.producers = null;
+        this.producers = new ArrayList<>();
         this.director = "N/A";
-        this.starActors = null;
+        this.starActors = new ArrayList<>();
     }
     @Override
     public void addTags(ArrayList<String> tags) {
@@ -91,7 +91,7 @@ public class TvShow extends Media {
         return episodes;
     }
 
-    public String[] getProducers() {
+    public ArrayList<String> getProducers() {
         return producers;
     }
 
@@ -99,7 +99,7 @@ public class TvShow extends Media {
         return director;
     }
 
-    public String[] getStarActors() {
+    public ArrayList<String> getStarActors() {
         return starActors;
     }
 }

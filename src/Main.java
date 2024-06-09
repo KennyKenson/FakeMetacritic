@@ -105,9 +105,9 @@ public class Main {
                                 System.out.print("Enter the movie's director(s): ");
                                 String director = READER.nextLine();
 
-                                String[] producers = {};// create a method to get string arrays
+                                ArrayList<String> producers = new ArrayList<>();// create a method to get string arrays
 
-                                String[] starActors = {};// create a method to get string arrays
+                                ArrayList<String> starActors = new ArrayList<>();// create a method to get string arrays
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
                                         Integer.toString(director.charAt(0)) + Integer.toString(duration).charAt(0) +
@@ -138,10 +138,10 @@ public class Main {
                                 System.out.print("Enter the expected duration of the video game: ");
                                 int playtime = Integer.parseInt(READER.nextLine());
 
-                                String[] devs = {"help"};// create a method to get string arrays
+                                ArrayList<String> devs = new ArrayList<>();// create a method to get string arrays
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
-                                        Integer.toString(devs[0].charAt(0)) +
+                                        Integer.toString(devs.getFirst().charAt(0)) +
                                         Integer.toString(playtime).charAt(0) + Integer.toString(age).charAt(0) +
                                         Integer.toString(desc.charAt(0)) + Integer.toString(studio.charAt(0)));
 
@@ -175,9 +175,9 @@ public class Main {
                                 System.out.print("Enter the TV show's director(s): ");
                                 String director = READER.nextLine();
 
-                                String[] producers = {};// create a method to get string arrays
+                                ArrayList<String> producers = new ArrayList<>();// create a method to get string arrays
 
-                                String[] starActors = {};// create a method to get string arrays
+                                ArrayList<String> starActors = new ArrayList<>();// create a method to get string arrays
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
                                         Integer.toString(director.charAt(0)) + Integer.toString(seasons).charAt(0) +

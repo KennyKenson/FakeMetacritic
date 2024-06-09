@@ -334,7 +334,7 @@ public class MediaLibrary {
                         starActors = mediaInfo[11].split("_");
                         mediaList.add(new TvShow(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
-                                seasons, episodes,producers, director, starActors));
+                                seasons, episodes,toArrayList(producers), director, toArrayList(starActors)));
                         tags = mediaInfo[12].split("_");
                         break;
                     case "M":
@@ -343,8 +343,8 @@ public class MediaLibrary {
                         director = mediaInfo[9];
                         starActors = mediaInfo[10].split("_");
                         mediaList.add(new Movie(id, name, review, rating, targetAge,
-                                false, 0, description, publishing, duration, producers,
-                                director, starActors));
+                                false, 0, description, publishing, duration,
+                                toArrayList(producers), director, toArrayList(starActors)));
                         tags = mediaInfo[11].split("_");
                         break;
                     case "V":
@@ -352,7 +352,7 @@ public class MediaLibrary {
                         devs = mediaInfo[8].split("_");
                         mediaList.add(new VideoGame(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
-                                playtime, devs));
+                                playtime, toArrayList(devs)));
                         tags = mediaInfo[9].split("_");
                         break;
                     //Need to initialize 'tags' in default so next for-loop works.
@@ -405,7 +405,7 @@ public class MediaLibrary {
                         writer.write(show.getSeasons() + "~");
                         writer.write(show.getEpisodes() + "~");
                         for (String producer : show.getProducers()) {
-                            if (show.getProducers()[show.getProducers().length-1].equals(producer)) {
+                            if (show.getProducers().indexOf(producer) == show.getProducers().size()-1) {
                                 writer.write(producer + "~");
                             } else {
                                 writer.write(producer + "_");
@@ -413,7 +413,7 @@ public class MediaLibrary {
                         }
                         writer.write(show.getDirector() + "~");
                         for (String actor : show.getStarActors()) {
-                            if (show.getStarActors()[show.getStarActors().length-1].equals(actor)) {
+                            if (show.getStarActors().indexOf(actor) == show.getStarActors().size()-1) {
                                 writer.write(actor + "~");
                             } else {
                                 writer.write(actor + "_");
@@ -424,7 +424,7 @@ public class MediaLibrary {
                         movie = (Movie) media;
                         writer.write(movie.getDuration() + "~");
                         for (String producer : movie.getProducers()) {
-                            if (movie.getProducers()[movie.getProducers().length-1].equals(producer)) {
+                            if (movie.getProducers().indexOf(producer) == movie.getProducers().size()-1) {
                                 writer.write(producer + "~");
                             } else {
                                 writer.write(producer + "_");
@@ -432,7 +432,7 @@ public class MediaLibrary {
                         }
                         writer.write(movie.getDirector() + "~");
                         for (String actor : movie.getStarActors()) {
-                            if (movie.getStarActors()[movie.getStarActors().length-1].equals(actor)) {
+                            if (movie.getStarActors().indexOf(actor) == movie.getStarActors().size()-1) {
                                 writer.write(actor + "~");
                             } else {
                                 writer.write(actor + "_");
@@ -443,7 +443,7 @@ public class MediaLibrary {
                         game = (VideoGame) media;
                         writer.write(game.getPlaytime() + "~");
                         for (String dev : game.getDevs()) {
-                            if (game.getDevs()[game.getDevs().length-1].equals(dev)) {
+                            if (game.getDevs().indexOf(dev) == game.getDevs().size()-1) {
                                 writer.write(dev + "~");
                             } else {
                                 writer.write(dev + "_");
@@ -473,5 +473,11 @@ public class MediaLibrary {
 
     public boolean exportCurrentList(String fileName) {
         return exportList(fileName, currentList);
+    }
+
+    private static ArrayList<String> toArrayList(String[] array) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        Collections.addAll(arrayList, array);
+        return arrayList;
     }
 }

@@ -4,14 +4,14 @@ import java.util.Arrays;
 public class Movie extends Media {
 
     private int duration;
-    private String[] producers;
+    private ArrayList<String> producers;
     private String director;
-    private String[] starActors;
+    private ArrayList<String>  starActors;
     private final String[] ALL_TAGS = {"help"};
 
     public Movie(String id, String name, String review, int rating, int targetAge,
                  boolean isLocked, int watchedStatus, String description, String publishing,
-                 int duration, String[] producers, String director, String[] starActors) {
+                 int duration, ArrayList<String> producers, String director, ArrayList<String> starActors) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
         this.duration = duration;
         this.producers = producers;
@@ -21,7 +21,7 @@ public class Movie extends Media {
     }
 
     public Movie(String id, String name, int age, String description, String publishing, int duration,
-                 String[] producers, String director, String[] starActors) {
+                 ArrayList<String> producers, String director, ArrayList<String> starActors) {
         super(id, name, age, description, publishing);
         this.duration = duration;
         this.producers = producers;
@@ -32,24 +32,24 @@ public class Movie extends Media {
     public Movie(String id, String name) {
         super(id, name);
         this.duration = 0;
-        this.producers = null;
+        this.producers = new ArrayList<>();
         this.director = "N/A";
-        this.starActors = null;
+        this.starActors = new ArrayList<>();
     }
 
     public Movie() {
         super();
         this.duration = 0;
-        this.producers = null;
+        this.producers = new ArrayList<>();
         this.director = "N/A";
-        this.starActors = null;
+        this.starActors = new ArrayList<>();
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public String[] getProducers() {
+    public ArrayList<String> getProducers() {
         return producers;
     }
 
@@ -57,7 +57,7 @@ public class Movie extends Media {
         return director;
     }
 
-    public String[] getStarActors() {
+    public ArrayList<String> getStarActors() {
         return starActors;
     }
 

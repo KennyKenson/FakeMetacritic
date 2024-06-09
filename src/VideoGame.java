@@ -4,19 +4,19 @@ import java.util.Arrays;
 public class VideoGame extends Media {
 
     private int playtime;
-    private String[] devs;
+    private ArrayList<String> devs;
     private final String[] ALL_TAGS = {"help"};
 
     public VideoGame(String id, String name, String review, int rating, int targetAge,
                      boolean isLocked, int watchedStatus, String description, String publishing,
-                     int playtime, String[] devs) {
+                     int playtime, ArrayList<String> devs) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
         this.playtime = playtime;
         this.devs = devs;
     }
 
     public VideoGame(String id, String name, int age, String description, String publishing,
-                     int playtime, String[] devs) {
+                     int playtime, ArrayList<String> devs) {
         super(id, name, age, description, publishing);
         this.playtime = playtime;
         this.devs = devs;
@@ -25,13 +25,13 @@ public class VideoGame extends Media {
     public VideoGame(String id, String name) {
         super(id, name);
         this.playtime = 0;
-        this.devs = null;
+        this.devs = new ArrayList<>();
     }
 
     public VideoGame() {
         super();
         this.playtime = 0;
-        this.devs = null;
+        this.devs = new ArrayList<>();
     }
     @Override
     public void addTags(ArrayList<String> tags) {
@@ -72,7 +72,7 @@ public class VideoGame extends Media {
         return playtime;
     }
 
-    public String[] getDevs() {
+    public ArrayList<String> getDevs() {
         return devs;
     }
 }
