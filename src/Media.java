@@ -138,7 +138,9 @@ abstract class Media {
 
     public abstract void addTags(ArrayList<String> tags);
 
-    public abstract void addTag(String tag);
+    public void addTag(String tag) {
+        tags.add(tag);
+    }
 
     @Override
     public abstract String toString();

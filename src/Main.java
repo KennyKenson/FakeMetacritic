@@ -49,12 +49,12 @@ public class Main {
 
                     while (invalid_choice) {
                         choice = getString("""
-                                Select a media type to add:
-                                1 > Book
-                                2 > Movie
-                                3 > Video Game
-                                4 > TV Show
-                                Type "back" to leave.""");
+Select a media type to add:
+1 > Book
+2 > Movie
+3 > Video Game
+4 > TV Show
+Type "back" to leave.""");
                         switch (choice) {
                             case "1": {
                                 String id = "B";
@@ -273,7 +273,8 @@ public class Main {
 
                 case "9": {
                     String id = getValidMedia("Select a media to view Type either the media's name or it's ID:", mediaLib.getMediaList());
-                    System.out.println(mediaLib.searchMedia(id));
+                    Media m = mediaLib.searchMedia(id);
+                    System.out.println(m);
                     break;
                 }
 

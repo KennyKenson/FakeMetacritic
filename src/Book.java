@@ -5,7 +5,6 @@ public class Book extends Media {
 
     private int pages;
     private String author;
-    private final String[] ALL_TAGS = {"include tags here"};
 
     public Book(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
                 String description, String publishing, int pages, String author) {
@@ -39,15 +38,6 @@ public class Book extends Media {
     public String getAuthor() {
         return author;
     }
-
-    @Override
-    public void addTag(String tag) {
-        if (Arrays.binarySearch(ALL_TAGS, tag) != -1) {
-            tags.add(tag);
-        } // if not, can we still add tag?
-
-    }
-
     @Override
     public void addTags(ArrayList<String> tags) {
         for (String tag : tags) {
@@ -85,7 +75,53 @@ public class Book extends Media {
 
     @Override
     public String toString() {
-        return "";
+        String lockedTitle = "";
+        String tagsList = "";
+
+        String score = "";
+        if (isLocked){
+            lockedTitle = "------------------[LOCKED TITLE]------------------";
+        }
+        if (!tags.isEmpty()) {
+            tagsList = tags.get(0);
+            for (int i = 1; i < tags.size(); i++) {
+                tagsList += ", " + tags.get(i);
+            }
+        }
+
+        if (rating != -1) {
+            for (int i = 0; i < rating; i++) {
+                score += "★";
+            }
+
+            for (int i = 0; i < 5 - rating; i++) {
+                score += "☆";
+            }
+        } else {
+            score = "No rating";
+        }
+
+        String toStr = String.format("""
+
+Book Viewer: %s
+%s
+Name: %s
+Author: %s
+Pages: %s pages
+Publishing House: %s
+Target Age: %s+
+Status: %s
+Tags: %s
+                
+Description:
+%s
+                
+Review: %s
+Rating: %s
+                """, id, lockedTitle, name, author, pages, publishing,
+                targetAge, watchedStatus, tagsList, description, review, score);
+
+        return toStr;
 
     }
 }

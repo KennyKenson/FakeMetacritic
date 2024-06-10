@@ -7,7 +7,6 @@ public class Movie extends Media {
     private ArrayList<String> producers;
     private String director;
     private ArrayList<String>  starActors;
-    private final String[] ALL_TAGS = {"help"};
 
     public Movie(String id, String name, String review, int rating, int targetAge,
                  boolean isLocked, int watchedStatus, String description, String publishing,
@@ -66,14 +65,6 @@ public class Movie extends Media {
         for (String tag : tags) {
             this.addTag(tag);
         }
-
-    }
-
-    @Override
-    public void addTag(String tag) {
-        if (Arrays.binarySearch(ALL_TAGS, tag) != -1) {
-            tags.add(tag);
-        } // if not, can we still add tag?
 
     }
 

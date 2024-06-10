@@ -8,7 +8,6 @@ public class TvShow extends Media {
     ArrayList<String> producers;
     String director;
     ArrayList<String> starActors;
-    private static final String[] ALL_TAGS = {"help"};
 
     public TvShow(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
                 String description, String publishing, int seasons, int episodes, ArrayList<String> producers, String director,
@@ -52,14 +51,6 @@ public class TvShow extends Media {
     public void addTags(ArrayList<String> tags) {
         for (String tag : tags) {
             this.addTag(tag);
-        }
-
-    }
-
-    @Override
-    public void addTag(String tag) {
-        if (Arrays.binarySearch(ALL_TAGS, tag) != -1) {
-            tags.add(tag);
         }
 
     }
