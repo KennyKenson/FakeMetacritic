@@ -46,9 +46,13 @@ public class Main {
                     Media m = null;
 
                     while (invalid_choice) {
-                        System.out.println("Select a media type to add:\n1 > Book\n2 > Movie\n3 > Video Game\n4 > TV Show");
-                        System.out.print("> ");
-                        choice = READER.nextLine();
+                        choice = getString("""
+                                Select a media type to add:
+                                1 > Book
+                                2 > Movie
+                                3 > Video Game
+                                4 > TV Show
+                                Type "back" to leave.""");
                         switch (choice) {
                             case "1": {
                                 String id = "B";
@@ -123,7 +127,7 @@ public class Main {
                                 ArrayList<String> devs = getArraylist("Enter the developers of the game.");// create a method to get string arrays
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
-                                        Integer.toString(devs.getFirst().charAt(0)) +
+                                        Integer.toString(devs.get(0).charAt(0)) +
                                         Integer.toString(playtime).charAt(0) + Integer.toString(age).charAt(0) +
                                         Integer.toString(desc.charAt(0)) + Integer.toString(studio.charAt(0)));
 
@@ -162,6 +166,10 @@ public class Main {
                                 id += tail_end.toLowerCase();
 
                                 m = new TvShow(id, name, age, desc, studio, seasons, episodes, producers, director, starActors);
+                                invalid_choice = false;
+                                break;
+                            }
+                            case "back" :{
                                 invalid_choice = false;
                                 break;
                             }
@@ -545,12 +553,12 @@ public class Main {
     }
 
     public static String unlockMedia(String id){
-        String choice;
+        String input;
         Media m = mediaLib.searchMedia(id);
 
         if (m.getIsLocked()){
-            choice = getString("The selected media is locked. Would you like to unlock it?(Y/N)");
-            if (choice.equals("Y") || choice.equals("y")){
+            input = getString("The selected media is locked. Would you like to unlock it?(Y/N)");
+            if (input.equals("Y") || input.equals("y")){
                 m.lockMedia(false);
                 return id;
             }
