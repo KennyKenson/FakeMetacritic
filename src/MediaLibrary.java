@@ -154,19 +154,10 @@ public class MediaLibrary {
     }
 
     public Media searchMedia(String id) {
-        sortMediaById();
-        int start = 0;
-        int end = currentList.size()-1;
-        int midpoint;
 
-        while (start <= end) {
-            midpoint = (start+end)/2;
-            if (currentList.get(midpoint).getId().equals(id)) {
-                return currentList.get(midpoint);
-            } else if (currentList.get(midpoint).getId().compareTo(id) > 0) {
-                start = midpoint+1;
-            } else {
-                end = midpoint-1;
+        for (Media media : mediaList){
+            if (media.getId().equals(id)){
+                return media;
             }
         }
         return null;

@@ -84,15 +84,30 @@ public class Movie extends Media {
 
     @Override
     public void printDetails() {
-        String stars = "";
+        String stars = "   ";
         if (rating == -1){
             stars = "No rating";
+        } else {
+            String rate = "";
+            for (int i = 0; i < rating; i++) {
+                stars += "*";
+            }
         }
         String age = "";
         if (targetAge == 0){
             age = "No age given";
+        } else {
+            age = Integer.toString(targetAge);
         }
-        System.out.printf("║%-18s║%-18s║   Movie    ║%-14s║%-12s║%-12s║%-9s║\n", name, id, age, stars, getWatchedStatus(), isLocked);
+
+        String formatted_name = "";
+
+        if (name.length() > 18){
+            formatted_name = name.substring(0, 15) + "...";
+        } else {
+            formatted_name = name;
+        }
+        System.out.printf("║%-18s║%-18s║   Movie    ║%-14s║%-12s║%-12s║%-9s║\n", formatted_name, id, age, stars, getWatchedStatus(), isLocked);
 
     }
 }

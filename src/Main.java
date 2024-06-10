@@ -13,7 +13,7 @@ public class Main {
         mediaLib.addMedia(new Movie("M1234567", "Mulan"));
         mediaLib.addMedia(new VideoGame("V1234567", "Undertale"));
         mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad"));
-        intro();
+//        intro();
 
 
         String choice;
@@ -26,8 +26,7 @@ public class Main {
             printMenu();
 
             if (mediaLib != null) {
-                System.out.print("> ");
-                choice = READER.nextLine();
+                choice = getString();
             } else {
                 System.out.println("No file has been detected in the system. Please load a file to continue.");
                 choice = "18";
@@ -54,23 +53,17 @@ public class Main {
                             case "1": {
                                 String id = "B";
 
-                                System.out.print("Enter the name of the book: ");
-                                String name = READER.nextLine();
+                                String name = getString("Enter the name of the book: ");
 
-                                System.out.print("Enter the author of the book: ");
-                                String author = READER.nextLine();
+                                String author = getString("Enter the author of the book: ");
 
-                                System.out.print("Enter the number of pages in the book: ");
-                                int pages = Integer.parseInt(READER.nextLine());
+                                int pages = getInt("Enter the number of pages in the book: ");
 
-                                System.out.print("Enter the target age of the book: ");
-                                int age = Integer.parseInt(READER.nextLine());
+                                int age = getInt("Enter the target age of the book: ");
 
-                                System.out.print("Enter the book's description: ");
-                                String desc = READER.nextLine();
+                                String desc = getString("Enter the book's description: ");
 
-                                System.out.print("Enter the book's publishing house: ");
-                                String pub_house = READER.nextLine();
+                                String pub_house = getString("Enter the book's publishing house: ");
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
                                         Integer.toString(author.charAt(0)) + Integer.toString(pages).charAt(0) +
@@ -85,29 +78,23 @@ public class Main {
                                 break;
                             }
                             case "2": {
-                                String id = "T";
+                                String id = "M";
 
-                                System.out.print("Enter the name of the movie: ");
-                                String name = READER.nextLine();
+                                String name = getString("Enter the name of the movie: ");
 
-                                System.out.print("Enter the target age of the movie: ");
-                                int age = Integer.parseInt(READER.nextLine());
+                                int age = getInt("Enter the target age of the movie: ");
 
-                                System.out.print("Enter the movie's description: ");
-                                String desc = READER.nextLine();
+                                String desc = getString("Enter the movie's description: ");
 
-                                System.out.print("Enter the movie's studio: ");
-                                String studio = READER.nextLine();
+                                String studio = getString("Enter the movie's studio: ");
 
-                                System.out.print("Enter the duration of the movie: ");
-                                int duration = Integer.parseInt(READER.nextLine());
+                                int duration = getInt("Enter the duration of the movie: ");;
 
-                                System.out.print("Enter the movie's director(s): ");
-                                String director = READER.nextLine();
+                                String director = getString("Enter the movie's director(s): ");
 
-                                ArrayList<String> producers = new ArrayList<>();// create a method to get string arrays
+                                ArrayList<String> producers = getArraylist("Enter the producers of the movie.");
 
-                                ArrayList<String> starActors = new ArrayList<>();// create a method to get string arrays
+                                ArrayList<String> starActors = getArraylist("Enter the star actors of the movie.");
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
                                         Integer.toString(director.charAt(0)) + Integer.toString(duration).charAt(0) +
@@ -123,22 +110,17 @@ public class Main {
                             case "3": {
                                 String id = "V";
 
-                                System.out.print("Enter the name of the video game: ");
-                                String name = READER.nextLine();
+                                String name = getString("Enter the name of the video game: ");
 
-                                System.out.print("Enter the target age of the video game: ");
-                                int age = Integer.parseInt(READER.nextLine());
+                                int age = getInt("Enter the target age of the video game: ");
 
-                                System.out.print("Enter the video game's description: ");
-                                String desc = READER.nextLine();
+                                String desc = getString("Enter the video game's description: ");
 
-                                System.out.print("Enter the video game's studio: ");
-                                String studio = READER.nextLine();
+                                String studio = getString("Enter the video game's studio: ");
 
-                                System.out.print("Enter the expected duration of the video game: ");
-                                int playtime = Integer.parseInt(READER.nextLine());
+                                int playtime = getInt("Enter the expected duration of the video game: ");
 
-                                ArrayList<String> devs = new ArrayList<>();// create a method to get string arrays
+                                ArrayList<String> devs = getArraylist("Enter the developers of the game.");// create a method to get string arrays
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
                                         Integer.toString(devs.getFirst().charAt(0)) +
@@ -154,30 +136,23 @@ public class Main {
                             case "4": {
                                 String id = "T";
 
-                                System.out.print("Enter the name of the TV show: ");
-                                String name = READER.nextLine();
+                                String name = getString("Enter the name of the TV show: ");
 
-                                System.out.print("Enter the target age of the TV show: ");
-                                int age = Integer.parseInt(READER.nextLine());
+                                int age = getInt("Enter the target age of the TV show: ");
 
-                                System.out.print("Enter the TV show's description: ");
-                                String desc = READER.nextLine();
+                                String desc = getString("Enter the TV show's description: ");
 
-                                System.out.print("Enter the TV show's studio: ");
-                                String studio = READER.nextLine();
+                                String studio = getString("Enter the TV show's studio: ");
 
-                                System.out.print("Enter the number of seasons in the TV show: ");
-                                int seasons = Integer.parseInt(READER.nextLine());
+                                int seasons = getInt("Enter the number of seasons in the TV show: ");
 
-                                System.out.print("Enter the number of episodes in the TV show: ");
-                                int episodes = Integer.parseInt(READER.nextLine());
+                                int episodes = getInt("Enter the number of episodes in the TV show: ");
 
-                                System.out.print("Enter the TV show's director(s): ");
-                                String director = READER.nextLine();
+                                String director = getString("Enter the TV show's director(s): ");
 
-                                ArrayList<String> producers = new ArrayList<>();// create a method to get string arrays
+                                ArrayList<String> producers = getArraylist("Enter the producers of the TV Show.");
 
-                                ArrayList<String> starActors = new ArrayList<>();// create a method to get string arrays
+                                ArrayList<String> starActors = getArraylist("Enter the star actors of the TV Show.");
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
                                         Integer.toString(director.charAt(0)) + Integer.toString(seasons).charAt(0) +
@@ -214,13 +189,10 @@ public class Main {
 
                 case "3": {
                     String id = unlockMedia(getValidMedia("Select a media to rate. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-
                     if (id != null) {
-                        System.out.println("Rate the media from 0-5 stars: ");
-                        System.out.print("> ");
-                        int score = Integer.parseInt(READER.nextLine());
-
+                        int score = getInt("Rate the media from 0-5 stars: ");
                         mediaLib.rateMedia(id, score);
+                        System.out.println("Rating was successful!");
                     }
 
                     break;
@@ -229,13 +201,11 @@ public class Main {
 
                 case "4": {
                     String id = unlockMedia(getValidMedia("Select a media to review. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-
                     if (id != null){
-                        System.out.println("Leave a review for the media: ");
-                        System.out.print("> ");
-                        String review = READER.nextLine();
-
+                        String review = getString("Leave a review for the media: ");
                         mediaLib.reviewMedia(id, review);
+                        System.out.println("Review was successful!");
+
                     }
 
                     break;
@@ -243,7 +213,6 @@ public class Main {
 
                 case "5": {
                     String id = unlockMedia(getValidMedia("Select a media to remove rating. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-
                     if (id != null){
                         mediaLib.removeRating(id);
                         System.out.println("Rating successfully removed. ");
@@ -254,7 +223,6 @@ public class Main {
 
                 case "6": {
                     String id = unlockMedia(getValidMedia("Select a media to remove review. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-
                     if (id != null){
                         mediaLib.removeReview(id);
                         System.out.println("Review successfully removed. ");
@@ -310,8 +278,7 @@ public class Main {
                         System.out.println(" 3 > " + Media.WATCHED_STATUS_STRINGS[3]);
                         System.out.println(" 4 > " + Media.WATCHED_STATUS_STRINGS[4]);
 
-                        System.out.print("> ");
-                        choice = READER.nextLine();
+                        choice = getString();
                         boolean isInvalid = true;
 
                         while (isInvalid) {
@@ -355,34 +322,27 @@ public class Main {
                     System.out.println(" 1 > target age");
                     System.out.println(" 2 > rating");
                     System.out.println(" 3 > keyword");
-                    System.out.print("> ");
-                    choice = READER.nextLine();
+                    choice = getString();
                     boolean isInvalid = true;
 
                     while (isInvalid) {
                         switch (choice) {
                             case "1": {
-                                System.out.println("Enter the minimum age: ");
-                                System.out.print("> ");
-                                int age = Integer.parseInt(READER.nextLine());
+                                int age = getInt("Enter the minimum age: ");
                                 mediaLib.filterMedia(age);
 
                                 isInvalid = false;
                                 break;
                             }
                             case "2": {
-                                System.out.println("Enter the minimum rating: ");
-                                System.out.print("> ");
-                                int rating  = Integer.parseInt(READER.nextLine());
+                                int rating  = getInt("Enter the minimum rating: ");
                                 mediaLib.filterMedia(rating);
 
                                 isInvalid = false;
                                 break;
                             }
                             case "3": {
-                                System.out.println("Enter a keyword: ");
-                                System.out.print("> ");
-                                String keyword = READER.nextLine();
+                                String keyword = getString("Enter a keyword: ");
                                 mediaLib.filterMedia(keyword);
 
                                 isInvalid = false;
@@ -406,8 +366,7 @@ public class Main {
                     System.out.println(" 2 > Sort by rating");
                     System.out.println(" 3 > Sort by ID");
 
-                    System.out.print("> ");
-                    choice = READER.nextLine();
+                    choice = getString();
                     boolean isInvalid = true;
 
                     while (isInvalid) {
@@ -465,8 +424,7 @@ public class Main {
                     success = false;
                     mediaLib = new MediaLibrary();
                     while (!success) {
-                        System.out.printf("Enter a filename to import (default location: %s): ", FILE_PATH);
-                        filename = READER.nextLine();
+                        filename = getString("Enter a filename to import (default location: " + FILE_PATH + "): ");
                         if (filename.isEmpty()) {
                             filename = DEFAULT_FILE;
                         }
@@ -483,12 +441,9 @@ public class Main {
                 case "19": {
                     success = false;
                     while (!success) {
-                        System.out.print("Do you want to use the same filename ("
-                                + filename + ")? (y/n) ");
-                        choice = READER.nextLine();
+                        choice = getString("Do you want to use the same filename (" + filename + ")? (y/n) ");
                         if (!choice.equals("y")) {
-                            System.out.print("Enter a filename to save: ");
-                            filename = READER.nextLine();
+                            filename = getString("Enter a filename to save: ");
                         }
                         System.out.println("Saving file...");
                         success = mediaLib.exportMediaList(FILE_PATH + filename);
@@ -511,6 +466,47 @@ public class Main {
 
     }
 
+    public static Integer getInt(String msg) {
+        System.out.println(msg);
+        System.out.print("> ");
+        int n;
+        while (true) {
+            try {
+                n = Integer.parseInt(READER.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Please type a number. ");
+            }
+        }
+        return n;
+    }
+    public static String getString (String msg){
+        System.out.println(msg);
+        System.out.print("> ");
+        return READER.nextLine();
+    }
+    public static String getString (){
+        System.out.print("> ");
+        return READER.nextLine();
+    }
+    public static ArrayList<String> getArraylist(String msg){
+        System.out.println(msg + " Enter -1 to stop. ");
+        String input;
+        ArrayList<String> list = new ArrayList<>();
+
+        while (true){
+            System.out.print("> ");
+            input = READER.nextLine();
+            if (input.equals("-1")){
+                break;
+            } else {
+                list.add(input);
+            }
+        }
+
+        return list;
+    }
+
     public static String getValidMedia(String msg, ArrayList<Media> media){
 
         System.out.println(msg);
@@ -527,8 +523,7 @@ public class Main {
 
         while (id == null){
 
-            System.out.print("> ");
-            String input = READER.nextLine();
+            String input = getString();
 
             if (mediaLib.findMedia(input) != null){
                 id = mediaLib.findMedia(input);
@@ -550,23 +545,20 @@ public class Main {
         Media m = mediaLib.searchMedia(id);
 
         if (m.getIsLocked()){
-            System.out.println("The selected media is locked. Would you like to unlock it?(Y/N)");
-            System.out.print("> ");
-            choice = READER.nextLine();
+            choice = getString("The selected media is locked. Would you like to unlock it?(Y/N)");
             if (choice.equals("Y") || choice.equals("y")){
                 m.lockMedia(false);
                 return id;
             }
+        } else {
+            return id;
         }
 
         return null;
     }
 
     public static void next() {
-        System.out.println();
-        System.out.print("Press Enter to continue...");
-        READER.nextLine();
-        System.out.println();
+        getString("Press enter to continue: ");
     }
 
     public static void intro() {
