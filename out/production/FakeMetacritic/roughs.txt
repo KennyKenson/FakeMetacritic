@@ -107,7 +107,7 @@ test
 
 Book Viewer: ID
 -------------[LOCKED TITLE]------------------
-Name: TItle
+Name: Title
 Author: A. Thur
 Pages: 329
 Publishing House:
@@ -115,7 +115,26 @@ Target Age: 0+
 Status: Not Watched
 Tags:
 
-Description: jkglf;dgjfdlsgjfldgjfdklgjfkgjfkljgklfjgklfjgfdlkjgkfdljgfdkljgfdkljgfdkljgfdkjgflkj
+Description:
+jkglf;dgjfdlsgjfldgjfdklgjfkgjfkljgklfjgklfjgfdlkjgkfdljgfdkljgfdkljgfdkljgfdkjgflkj
+
+Review: jsdhkfladshfdshfdsjhfdsahf
+Rating: *****
+
+
+
+TV S Viewer: ID
+-------------[LOCKED TITLE]------------------
+Name: Title
+Author: A. Thur
+Pages: 329
+Publishing House:
+Target Age: 0+
+Status: Not Watched
+Tags:
+
+Description:
+jkglf;dgjfdlsgjfldgjfdklgjfkgjfkljgklfjgklfjgfdlkjgkfdljgfdkljgfdkljgfdkljgfdkjgflkj
 
 Review: jsdhkfladshfdshfdsjhfdsahf
 Rating: *****

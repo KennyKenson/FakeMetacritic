@@ -7,6 +7,8 @@ public class Main {
     static final Scanner READER = new Scanner(System.in);
     static MediaLibrary mediaLib = null;
 
+    static final String BACK_VALUE = "back";
+
     public static void main(String[] args) {
         mediaLib = new MediaLibrary();
         mediaLib.addMedia(new Book("B1234567", "The Odyssey"));
@@ -169,7 +171,7 @@ public class Main {
                                 invalid_choice = false;
                                 break;
                             }
-                            case "back" :{
+                            case BACK_VALUE :{
                                 invalid_choice = false;
                                 break;
                             }
@@ -179,7 +181,9 @@ public class Main {
                         }
                     }
 
-                    mediaLib.addMedia(m);
+                    if (m != null) {
+                        mediaLib.addMedia(m);
+                    }
                     break;
                 }
 
@@ -316,6 +320,10 @@ public class Main {
                                     isInvalid = false;
                                     break;
                                 }
+                                case BACK_VALUE :{
+                                    isInvalid = false;
+                                    break;
+                                }
                                 default: {
                                     System.out.println("Invalid option. Try again.");
                                 }
@@ -356,6 +364,10 @@ public class Main {
                                 isInvalid = false;
                                 break;
                             }
+                            case BACK_VALUE :{
+                                isInvalid = false;
+                                break;
+                            }
                             default: {
                                 System.out.println("Invalid option. Try again.");
                             }
@@ -391,6 +403,10 @@ public class Main {
                             }
                             case "3": {
                                 mediaLib.sortMediaById();
+                                isInvalid = false;
+                                break;
+                            }
+                            case BACK_VALUE :{
                                 isInvalid = false;
                                 break;
                             }
@@ -468,7 +484,6 @@ public class Main {
                     System.out.println();
                     break;
                 }
-
                 default: {
                     System.out.println("\nInvalid choice!\n");
                 }
