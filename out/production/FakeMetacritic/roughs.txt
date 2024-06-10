@@ -105,10 +105,21 @@ does ken really need this:
 test
 
 
-Book Viewer
+Book Viewer: ID
+-------------[LOCKED TITLE]------------------
+Name: TItle
+Author: A. Thur
+Pages: 329
+Publishing House:
+Target Age: 0+
+Status: Not Watched
+Tags:
 
-Name: *The Odyssey*
-Author: *Homer*
+Description: jkglf;dgjfdlsgjfldgjfdklgjfkgjfkljgklfjgklfjgfdlkjgkfdljgfdkljgfdkljgfdkljgfdkjgflkj
+
+Review: jsdhkfladshfdshfdsjhfdsahf
+Rating: *****
+
 
 
 

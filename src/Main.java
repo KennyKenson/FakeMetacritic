@@ -13,8 +13,8 @@ public class Main {
         mediaLib.addMedia(new Movie("M1234567", "Mulan"));
         mediaLib.addMedia(new VideoGame("V1234567", "Undertale"));
         mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad"));
+        mediaLib.resetCurrentList(); //Need to load info from mediaList onto currentList.
 //        intro();
-
 
         String choice;
         String filename = "";
@@ -88,7 +88,7 @@ public class Main {
 
                                 String studio = getString("Enter the movie's studio: ");
 
-                                int duration = getInt("Enter the duration of the movie: ");;
+                                int duration = getInt("Enter the duration of the movie: ");
 
                                 String director = getString("Enter the movie's director(s): ");
 
@@ -401,21 +401,25 @@ public class Main {
                 }
 
                 case "14": {
+                    mediaLib.resetCurrentList();
                     mediaLib.printBooks();
                     break;
                 }
 
                 case "15": {
+                    mediaLib.resetCurrentList();
                     mediaLib.printTvShows();
                     break;
                 }
 
                 case "16": {
+                    mediaLib.resetCurrentList();
                     mediaLib.printMovies();
                     break;
                 }
 
                 case "17": {
+                    mediaLib.resetCurrentList();
                     mediaLib.printVideoGames();
                     break;
                 }
@@ -586,12 +590,12 @@ public class Main {
     public static void printMenu() {
         if (mediaLib != null) {
 
-            ArrayList<Media> currentList = mediaLib.currentList;
+            ArrayList<Media> currentList = mediaLib.getCurrentList();
 
             if (currentList.isEmpty()) {
                 System.out.println("Current list has no elements. Retrieving information from media library");
-                mediaLib.currentList = mediaLib.getMediaList();
-                currentList = mediaLib.currentList;
+                mediaLib.resetCurrentList();
+                currentList = mediaLib.getCurrentList();
             }
             System.out.println("""
 ╔═════════════════════════════════════════════════════════════════════════════════════════════════════╗

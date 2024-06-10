@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class MediaLibrary {
 
-    ArrayList<Media> mediaList;
-    ArrayList<Media> currentList;
+    private ArrayList<Media> mediaList;
+    private ArrayList<Media> currentList;
     String DEFAULT_FILE = "media";
 
     public MediaLibrary() {
@@ -16,6 +16,10 @@ public class MediaLibrary {
 
     public ArrayList<Media> getMediaList() {
         return mediaList;
+    }
+
+    public ArrayList<Media> getCurrentList() {
+        return currentList;
     }
 
     public void filterMedia(String keyword) {
@@ -93,12 +97,12 @@ public class MediaLibrary {
 
             while (left < right) {
 
-                while (currentList.get(right).getName().compareTo(pivot.getName()) >= 0 && left < right) {
+                while (currentList.get(right).getName().compareToIgnoreCase(pivot.getName()) >= 0 && left < right) {
                     right--;
                 }
                 currentList.set(left, currentList.get(right));
 
-                while (currentList.get(left).getName().compareTo(pivot.getName()) <= 0 && left < right) {
+                while (currentList.get(left).getName().compareToIgnoreCase(pivot.getName()) <= 0 && left < right) {
                     left++;
                 }
                 currentList.set(right, currentList.get(left));
@@ -154,7 +158,6 @@ public class MediaLibrary {
     }
 
     public Media searchMedia(String id) {
-
         for (Media media : mediaList){
             if (media.getId().equals(id)){
                 return media;
