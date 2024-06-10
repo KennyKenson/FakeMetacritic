@@ -336,7 +336,7 @@ public class Main {
                             }
                             case "2": {
                                 int rating  = getInt("Enter the minimum rating: ");
-                                mediaLib.filterMedia(rating);
+                                mediaLib.filterRating(rating);
 
                                 isInvalid = false;
                                 break;

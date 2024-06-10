@@ -98,7 +98,6 @@ public class TvShow extends Media {
         System.out.printf("║%-18s║%-18s║  TV Show   ║%-14s║%-12s║%-12s║%-9s║\n", formatted_name, id, age, stars, getWatchedStatus(), isLocked);
 
     }
-//    ║dkslfj;adlksjfa║
 
     public int getSeasons() {
         return seasons;
