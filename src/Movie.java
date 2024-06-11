@@ -7,6 +7,23 @@ public class Movie extends Media {
     private String director;
     private ArrayList<String> starActors;
 
+    /**
+     * Constructor method.
+     *
+     * @param id ID of the movie.
+     * @param name Name of the movie.
+     * @param review A review for the movie.
+     * @param rating A rating for the movie from 0-5.
+     * @param targetAge The age rating for the movie.
+     * @param isLocked Status to determine if the media is editable or not.
+     * @param watchedStatus Status to determine what user plan's to do with the media.
+     * @param description A description for the movie.
+     * @param publishing The name of the company that licensed the media.
+     * @param duration The duration of the movie.
+     * @param producers The producers for the movie.
+     * @param director The movie's director.
+     * @param starActors Notable actors in the movie.
+     */
     public Movie(String id, String name, String review, int rating, int targetAge,
                  boolean isLocked, int watchedStatus, String description, String publishing,
                  int duration, ArrayList<String> producers, String director, ArrayList<String> starActors) {
@@ -18,6 +35,19 @@ public class Movie extends Media {
 
     }
 
+    /**
+     * Constructor that doesn't require a review, rating, watched or lock status.
+     *
+     * @param id The movie's ID.
+     * @param name The movie's name.
+     * @param age The movie's target age.
+     * @param description Description for the movie.
+     * @param publishing Name of the company that licensed the movie.
+     * @param duration Duration of the movie.
+     * @param producers Producers for the movie.
+     * @param director The movie's director.
+     * @param starActors Notable actors in the movie.
+     */
     public Movie(String id, String name, int age, String description, String publishing, int duration,
                  ArrayList<String> producers, String director, ArrayList<String> starActors) {
         super(id, name, age, description, publishing);
@@ -27,6 +57,12 @@ public class Movie extends Media {
         this.starActors = starActors;
     }
 
+    /**
+     * Constructor that only requires a name and ID.
+     *
+     * @param id Movie's ID.
+     * @param name Name of the movie.
+     */
     public Movie(String id, String name) {
         super(id, name);
         this.duration = 0;
@@ -35,6 +71,9 @@ public class Movie extends Media {
         this.starActors = new ArrayList<>();
     }
 
+    /**
+     * Constructor with no parameters.
+     */
     public Movie() {
         super();
         this.duration = 0;
@@ -43,22 +82,47 @@ public class Movie extends Media {
         this.starActors = new ArrayList<>();
     }
 
+    /**
+     * Getter for duration.
+     *
+     * @return duration
+     */
     public int getDuration() {
         return duration;
     }
 
+    /**
+     * Getter for producers.
+     *
+     * @return producers
+     */
     public ArrayList<String> getProducers() {
         return producers;
     }
 
+    /**
+     * Getter for director.
+     *
+     * @return director
+     */
     public String getDirector() {
         return director;
     }
 
+    /**
+     * Getter for starActors.
+     *
+     * @return starActors
+     */
     public ArrayList<String> getStarActors() {
         return starActors;
     }
 
+    /**
+     * toString method for Movie.
+     *
+     * @return The printed value for a Movie object.
+     */
     @Override
     public String toString() {
         String lockedTitle = "";
@@ -126,6 +190,9 @@ public class Movie extends Media {
                 publishing, targetAge, watchedStatus, tagsList, description, review, score);
     }
 
+    /**
+     * Prints all the details regarding the movie.
+     */
     @Override
     public void printDetails() {
         String stars = "   ";

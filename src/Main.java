@@ -547,6 +547,12 @@ public class Main {
 
     }
 
+    /**
+     * Gets valid integer from user.
+     *
+     * @param msg Message shown to user.
+     * @return Integer value.
+     */
     public static Integer getInt(String msg) {
         System.out.println(msg);
         System.out.print("> ");
@@ -562,17 +568,34 @@ public class Main {
         return n;
     }
 
+    /**
+     * Gets a string from user.
+     *
+     * @param msg Message shown to user.
+     * @return String from user.
+     */
     public static String getString(String msg) {
         System.out.println(msg);
         System.out.print("> ");
         return READER.nextLine();
     }
 
+    /**
+     * Gets a string from user, without showing them a message.
+     *
+     * @return String from user.
+     */
     public static String getString() {
         System.out.print("> ");
         return READER.nextLine();
     }
 
+    /**
+     * Gets an arraylist of strings from user.
+     *
+     * @param msg Message shown to user.
+     * @return Arraylist of strings from user.
+     */
     public static ArrayList<String> getArraylist(String msg) {
         System.out.println(msg + " Enter -1 to stop. ");
         String input;
@@ -591,6 +614,13 @@ public class Main {
         return list;
     }
 
+    /**
+     * Gets valid Media object from user when they input the media's name or ID.
+     *
+     * @param msg Message shown to user.
+     * @param media The Media object.
+     * @return Valid Media object.
+     */
     public static String getValidMedia(String msg, ArrayList<Media> media) {
 
         System.out.println(msg);
@@ -625,6 +655,12 @@ public class Main {
         return id;
     }
 
+    /**
+     * Interface to unlock a piece of media.
+     *
+     * @param id ID for a Media object.
+     * @return The ID of the target Media object.
+     */
     public static String unlockMedia(String id) {
         String input;
         Media m = mediaLib.searchMedia(id);
@@ -632,7 +668,7 @@ public class Main {
         if (m.getIsLocked()) {
             input = getString("The selected media is locked. Would you like to unlock it?(Y/N)");
             if (input.equals("Y") || input.equals("y")) {
-                m.lockMedia(false);
+                mediaLib.lockMedia(id);
                 return id;
             }
         } else {
@@ -642,10 +678,16 @@ public class Main {
         return null;
     }
 
+    /**
+     * Prints an intermediate message before going to the next screen.
+     */
     public static void next() {
         getString("Press enter to continue: ");
     }
 
+    /**
+     * Introductory message when the program starts.
+     */
     public static void intro() {
         System.out.println("Ladies, gentlemen, and Mr. Cho...");
         next();
@@ -668,6 +710,9 @@ public class Main {
 
     }
 
+    /**
+     * Prints the main menu of Fake Metacritic.
+     */
     public static void printMenu() {
         if (mediaLib != null) {
 
