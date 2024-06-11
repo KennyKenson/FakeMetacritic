@@ -16,7 +16,7 @@ public class Main {
         mediaLib.addMedia(new VideoGame("V1234567", "Undertale"));
         mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad"));
         mediaLib.resetCurrentList(); //Need to load info from mediaList onto currentList.
-//        intro();
+        intro();
 
         String choice;
         String filename = "";
@@ -49,12 +49,12 @@ public class Main {
 
                     while (invalid_choice) {
                         choice = getString("""
-Select a media type to add:
-1 > Book
-2 > Movie
-3 > Video Game
-4 > TV Show
-Type "back" to leave.""");
+                                Select a media type to add:
+                                1 > Book
+                                2 > Movie
+                                3 > Video Game
+                                4 > TV Show
+                                Type "back" to leave.""");
                         switch (choice) {
                             case "1": {
                                 String id = "B";
@@ -126,10 +126,10 @@ Type "back" to leave.""");
 
                                 int playtime = getInt("Enter the expected duration of the video game: ");
 
-                                ArrayList<String> devs = getArraylist("Enter the developers of the game.");// create a method to get string arrays
+                                ArrayList<String> devs = getArraylist("Enter the developers of the game.");
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
-                                        Integer.toString(devs.getFirst().charAt(0)) +
+                                        Integer.toString(devs.get(0).charAt(0)) +
                                         Integer.toString(playtime).charAt(0) + Integer.toString(age).charAt(0) +
                                         Integer.toString(desc.charAt(0)) + Integer.toString(studio.charAt(0)));
 
@@ -167,11 +167,12 @@ Type "back" to leave.""");
 
                                 id += tail_end.toLowerCase();
 
-                                m = new TvShow(id, name, age, desc, studio, seasons, episodes, producers, director, starActors);
+                                m = new TvShow(id, name, age, desc, studio, seasons, episodes, producers,
+                                        director, starActors);
                                 invalid_choice = false;
                                 break;
                             }
-                            case BACK_VALUE :{
+                            case BACK_VALUE: {
                                 invalid_choice = false;
                                 break;
                             }
@@ -189,7 +190,8 @@ Type "back" to leave.""");
 
                 case "2": {
 
-                    String id = unlockMedia(getValidMedia("Select a media to remove. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                    String id = unlockMedia(getValidMedia("Select a media to remove. " +
+                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
 
                     if (id != null) {
                         mediaLib.removeMedia(id);
@@ -200,7 +202,8 @@ Type "back" to leave.""");
                 }
 
                 case "3": {
-                    String id = unlockMedia(getValidMedia("Select a media to rate. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                    String id = unlockMedia(getValidMedia("Select a media to rate. " +
+                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
                     if (id != null) {
                         int score = getInt("Rate the media from 0-5 stars: ");
                         mediaLib.rateMedia(id, score);
@@ -212,8 +215,9 @@ Type "back" to leave.""");
                 }
 
                 case "4": {
-                    String id = unlockMedia(getValidMedia("Select a media to review. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-                    if (id != null){
+                    String id = unlockMedia(getValidMedia("Select a media to review. " +
+                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                    if (id != null) {
                         String review = getString("Leave a review for the media: ");
                         mediaLib.reviewMedia(id, review);
                         System.out.println("Review was successful!");
@@ -224,8 +228,9 @@ Type "back" to leave.""");
                 }
 
                 case "5": {
-                    String id = unlockMedia(getValidMedia("Select a media to remove rating. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-                    if (id != null){
+                    String id = unlockMedia(getValidMedia("Select a media to remove rating. " +
+                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                    if (id != null) {
                         mediaLib.removeRating(id);
                         System.out.println("Rating successfully removed. ");
                     }
@@ -234,8 +239,9 @@ Type "back" to leave.""");
                 }
 
                 case "6": {
-                    String id = unlockMedia(getValidMedia("Select a media to remove review. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-                    if (id != null){
+                    String id = unlockMedia(getValidMedia("Select a media to remove review. " +
+                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                    if (id != null) {
                         mediaLib.removeReview(id);
                         System.out.println("Review successfully removed. ");
                     }
@@ -245,14 +251,15 @@ Type "back" to leave.""");
                 case "7": {
                     ArrayList<Media> media = new ArrayList<>();
 
-                    for (Media m : mediaLib.getMediaList()){
-                        if (!m.isLocked){
+                    for (Media m : mediaLib.getMediaList()) {
+                        if (!m.isLocked) {
                             media.add(m);
                         }
                     }
 
                     if (!media.isEmpty()) {
-                        String id = getValidMedia("Select a media to lock. Type either the media's name or it's ID: ", media);
+                        String id = getValidMedia("Select a media to lock. " +
+                                "Type either the media's name or it's ID: ", media);
 
                         mediaLib.lockMedia(id);
                         System.out.println("Media successfully locked. ");
@@ -272,16 +279,18 @@ Type "back" to leave.""");
                 }
 
                 case "9": {
-                    String id = getValidMedia("Select a media to view Type either the media's name or it's ID:", mediaLib.getMediaList());
+                    String id = getValidMedia("Select a media to view. " +
+                            "Type either the media's name or it's ID:", mediaLib.getMediaList());
                     Media m = mediaLib.searchMedia(id);
                     System.out.println(m);
                     break;
                 }
 
                 case "10": {
-                    String id = unlockMedia(getValidMedia("Select a media to change watched status of. Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                    String id = unlockMedia(getValidMedia("Select a media to change watched status of. " +
+                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
 
-                    if (id != null){
+                    if (id != null) {
                         Media m = mediaLib.searchMedia(id);
 
                         System.out.println("Select a status: ");
@@ -321,7 +330,7 @@ Type "back" to leave.""");
                                     isInvalid = false;
                                     break;
                                 }
-                                case BACK_VALUE :{
+                                case BACK_VALUE: {
                                     isInvalid = false;
                                     break;
                                 }
@@ -335,6 +344,29 @@ Type "back" to leave.""");
                 }
 
                 case "11": {
+                    String id = getValidMedia("Enter the media you want to add tags to: ", mediaLib.getMediaList());
+
+                    if (id != null) {
+                        Media m = mediaLib.searchMedia(id);
+                        ArrayList<String> tags = getArraylist("Enter the tags for " + m.getName() + ": ");
+                        m.addTags(tags);
+                    }
+
+                    break;
+                }
+
+                case "12": {
+                    String id = getValidMedia("Enter the media you want to add tags to: ", mediaLib.getMediaList());
+
+                    if (id != null) {
+                        int age = getInt("Enter the target age of the media: ");
+                        mediaLib.setTargetAge(id, age);
+                    }
+
+                    break;
+                }
+
+                case "13": {
                     System.out.println("Select what you want to filter: ");
                     System.out.println(" 1 > target age");
                     System.out.println(" 2 > rating");
@@ -352,7 +384,7 @@ Type "back" to leave.""");
                                 break;
                             }
                             case "2": {
-                                int rating  = getInt("Enter the minimum rating: ");
+                                int rating = getInt("Enter the minimum rating: ");
                                 mediaLib.filterRating(rating);
 
                                 isInvalid = false;
@@ -365,7 +397,7 @@ Type "back" to leave.""");
                                 isInvalid = false;
                                 break;
                             }
-                            case BACK_VALUE :{
+                            case BACK_VALUE: {
                                 isInvalid = false;
                                 break;
                             }
@@ -381,11 +413,11 @@ Type "back" to leave.""");
                     break;
                 }
 
-                case "12": {
+                case "14": {
                     System.out.println("Select the following ways to sort Current List: ");
-                    System.out.println(" 1 > Sort by name");
-                    System.out.println(" 2 > Sort by rating");
-                    System.out.println(" 3 > Sort by ID");
+                    System.out.println(" 1 > Sort by name (A-Z)");
+                    System.out.println(" 2 > Sort by rating (lowest to highest)");
+                    System.out.println(" 3 > Sort by ID (A-Z)");
 
                     choice = getString();
                     boolean isInvalid = true;
@@ -407,7 +439,7 @@ Type "back" to leave.""");
                                 isInvalid = false;
                                 break;
                             }
-                            case BACK_VALUE :{
+                            case BACK_VALUE: {
                                 isInvalid = false;
                                 break;
                             }
@@ -416,40 +448,46 @@ Type "back" to leave.""");
                             }
                         }
                     }
-                    break;
-                }
-
-                case "13": {
-                    mediaLib.resetCurrentList();
-                    System.out.println("Current list reset successfully.");
-                    break;
-                }
-
-                case "14": {
-                    mediaLib.resetCurrentList();
-                    mediaLib.printBooks();
+                    System.out.println("Current list successfully sorted.");
                     break;
                 }
 
                 case "15": {
                     mediaLib.resetCurrentList();
-                    mediaLib.printTvShows();
+                    System.out.println("Current list reset successfully.");
                     break;
                 }
 
                 case "16": {
-                    mediaLib.resetCurrentList();
-                    mediaLib.printMovies();
+                    mediaLib.reverseList();
                     break;
                 }
 
                 case "17": {
                     mediaLib.resetCurrentList();
-                    mediaLib.printVideoGames();
+                    mediaLib.printBooks();
                     break;
                 }
 
                 case "18": {
+                    mediaLib.resetCurrentList();
+                    mediaLib.printTvShows();
+                    break;
+                }
+
+                case "19": {
+                    mediaLib.resetCurrentList();
+                    mediaLib.printMovies();
+                    break;
+                }
+
+                case "20": {
+                    mediaLib.resetCurrentList();
+                    mediaLib.printVideoGames();
+                    break;
+                }
+
+                case "21": {
                     success = false;
                     mediaLib = new MediaLibrary();
                     while (!success) {
@@ -467,7 +505,18 @@ Type "back" to leave.""");
                     break;
                 }
 
-                case "19": {
+                case "22": {
+                    String whichList;
+                    while (true) {
+                        whichList = getString("""
+                                Enter the following to export that list:
+                                1 > List of all media
+                                2 > Current list""");
+                        if (whichList.equals("1") || whichList.equals("2")) {
+                            break;
+                        }
+                        System.out.println("Invalid choice. Try again. ");
+                    }
                     success = false;
                     while (!success) {
                         choice = getString("Do you want to use the same filename (" + filename + ")? (y/n) ");
@@ -475,7 +524,11 @@ Type "back" to leave.""");
                             filename = getString("Enter a filename to save: ");
                         }
                         System.out.println("Saving file...");
-                        success = mediaLib.exportMediaList(FILE_PATH + filename);
+                        if (whichList.equals("1")) {
+                            success = mediaLib.exportMediaList(FILE_PATH + filename);
+                        } else {
+                            success = mediaLib.exportCurrentList(FILE_PATH + filename);
+                        }
                         if (success) {
                             System.out.println("Media list saved!");
                         } else {
@@ -494,11 +547,6 @@ Type "back" to leave.""");
 
     }
 
-    /**
-     * Program that gets valid integer from user.
-     * @param msg Message shown to user.
-     * @return Integer value.
-     */
     public static Integer getInt(String msg) {
         System.out.println(msg);
         System.out.print("> ");
@@ -513,24 +561,27 @@ Type "back" to leave.""");
         }
         return n;
     }
-    public static String getString (String msg){
+
+    public static String getString(String msg) {
         System.out.println(msg);
         System.out.print("> ");
         return READER.nextLine();
     }
-    public static String getString (){
+
+    public static String getString() {
         System.out.print("> ");
         return READER.nextLine();
     }
-    public static ArrayList<String> getArraylist(String msg){
+
+    public static ArrayList<String> getArraylist(String msg) {
         System.out.println(msg + " Enter -1 to stop. ");
         String input;
         ArrayList<String> list = new ArrayList<>();
 
-        while (true){
+        while (true) {
             System.out.print("> ");
             input = READER.nextLine();
-            if (input.equals("-1")){
+            if (input.equals("-1")) {
                 break;
             } else {
                 list.add(input);
@@ -540,38 +591,33 @@ Type "back" to leave.""");
         return list;
     }
 
-    /**
-     * Gets valid Media object from user when they input the media's name or ID.
-     * @param msg Message shown to user.
-     * @param media The Media object.
-     * @return Valid Media object.
-     */
-    public static String getValidMedia(String msg, ArrayList<Media> media){
+    public static String getValidMedia(String msg, ArrayList<Media> media) {
 
         System.out.println(msg);
         System.out.println("""
-╔══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦════════════╦═════════╗
-║       Name       ║        ID        ║   Type     ║  Age Rating  ║   Rating   ║   Status   ║ Locked? ║
-╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬════════════╬═════════╣""");
-        for (Media m : media){
+                ╔══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦════════════╦═════════╗
+                ║       Name       ║        ID        ║   Type     ║  Age Rating  ║   Rating   ║   Status   ║ Locked? ║
+                ╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬════════════╬═════════╣""");
+        for (Media m : media) {
             m.printDetails();
         }
         System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩════════════╩═════════╝");
 
         String id = null;
 
-        while (id == null){
+        while (id == null) {
 
             String input = getString();
 
-            if (mediaLib.findMedia(input) != null){
+            if (mediaLib.findMedia(input) != null) {
                 id = mediaLib.findMedia(input);
             } else if (mediaLib.searchMedia(input) != null) {
                 id = input;
             }
 
-            if (id == null){
-                System.out.println("Invalid input. Please enter either the name or the ID of the media you want to remove.");
+            if (id == null) {
+                System.out.println("Invalid input. Please enter either " +
+                        "the name or the ID of the media you want to remove.");
             }
 
         }
@@ -579,18 +625,13 @@ Type "back" to leave.""");
         return id;
     }
 
-    /**
-     * Interface to unlock a piece of media.
-     * @param id ID for a Media object.
-     * @return The ID of the target Media object.
-     */
-    public static String unlockMedia(String id){
+    public static String unlockMedia(String id) {
         String input;
         Media m = mediaLib.searchMedia(id);
 
-        if (m.getIsLocked()){
+        if (m.getIsLocked()) {
             input = getString("The selected media is locked. Would you like to unlock it?(Y/N)");
-            if (input.equals("Y") || input.equals("y")){
+            if (input.equals("Y") || input.equals("y")) {
                 m.lockMedia(false);
                 return id;
             }
@@ -601,16 +642,10 @@ Type "back" to leave.""");
         return null;
     }
 
-    /**
-     * Prints an intermediate message before going to the next screen.
-     */
     public static void next() {
         getString("Press enter to continue: ");
     }
 
-    /**
-     * Introductory message when the program starts.
-     */
     public static void intro() {
         System.out.println("Ladies, gentlemen, and Mr. Cho...");
         next();
@@ -622,61 +657,38 @@ Type "back" to leave.""");
         System.out.println("*insert drum roll effect here*");
         next();
         System.out.println("""
-                                            
-            ███████╗ █████╗ ██╗  ██╗███████╗    ███╗   ███╗███████╗████████╗ █████╗  ██████╗██████╗ ██╗████████╗██╗ ██████╗
-            ██╔════╝██╔══██╗██║ ██╔╝██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██║██╔════╝
-            █████╗  ███████║█████╔╝ █████╗      ██╔████╔██║█████╗     ██║   ███████║██║     ██████╔╝██║   ██║   ██║██║    \s
-            ██╔══╝  ██╔══██║██╔═██╗ ██╔══╝      ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║     ██╔══██╗██║   ██║   ██║██║    \s
-            ██║     ██║  ██║██║  ██╗███████╗    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╗██║  ██║██║   ██║   ██║╚██████╗
-            ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝ ╚═════╝""");
+                                                
+                ███████╗ █████╗ ██╗  ██╗███████╗    ███╗   ███╗███████╗████████╗ █████╗  ██████╗██████╗ ██╗████████╗██╗ ██████╗
+                ██╔════╝██╔══██╗██║ ██╔╝██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██║██╔════╝
+                █████╗  ███████║█████╔╝ █████╗      ██╔████╔██║█████╗     ██║   ███████║██║     ██████╔╝██║   ██║   ██║██║    \s
+                ██╔══╝  ██╔══██║██╔═██╗ ██╔══╝      ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║     ██╔══██╗██║   ██║   ██║██║    \s
+                ██║     ██║  ██║██║  ██╗███████╗    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╗██║  ██║██║   ██║   ██║╚██████╗
+                ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝ ╚═════╝""");
         next();
 
     }
 
-    /**
-     * Prints the main menu of Fake Metacritic.
-     */
     public static void printMenu() {
         if (mediaLib != null) {
 
-            ArrayList<Media> currentList = mediaLib.getCurrentList();
-
-            if (currentList.isEmpty()) {
-                System.out.println("Current list has no elements. Retrieving information from media library");
-                mediaLib.resetCurrentList();
-                currentList = mediaLib.getCurrentList();
-            }
-            System.out.println("""
-╔═════════════════════════════════════════════════════════════════════════════════════════════════════╗
-║                                        Current List Of Media                                        ║
-╠══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦════════════╦═════════╣
-║       Name       ║        ID        ║    Type    ║  Age Rating  ║   Rating   ║   Status   ║ Locked? ║
-╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬════════════╬═════════╣"""
-           );
-            for (Media m : currentList) {
-
-                m.printDetails();
-            }
-
-            System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩════════════╩═════════╝");
+            mediaLib.printCurrentList();
 
             System.out.println("""
-Select an option:
+                    Select an option:
 
- --Media Handling--           --Edit Current List--           --View All--           --Import/Export--
-  1 > add media               11 > filter media 	          14 > Books	         18 > Import
-  2 > remove media            12 > sort media          		  15 > TV Shows	         19 > Export
-  3 > rate media	          13 > reset Current List         16 > Movies
-  4 > review media                                            17 > Video Games
-  5 > remove rating
-  6 > remove review
-  7 > lock media
-  8 > get random media
-  9 > find media
- 10 > change watched status
-  
-  0 > exit
- """);
+                     --Media Handling--           --Edit Current List--           --View All--           --Import/Export--
+                      1 > add media               12 > filter media 	          15 > Books	         19 > Import
+                      2 > remove media            13 > sort media          		  16 > TV Shows	         20 > Export
+                      3 > rate media              14 > reset Current List         17 > Movies
+                      4 > review media                                            18 > Video Games
+                      5 > remove rating  \s
+                      6 > remove review   \s
+                      7 > lock media   \s
+                      8 > get random media   \s
+                      9 > find media   \s
+                     10 > change watched status   \s
+                     11 > add tag to media
+                     """);
         }
     }
 }

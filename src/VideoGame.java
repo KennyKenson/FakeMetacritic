@@ -26,19 +26,6 @@ public class VideoGame extends Media {
         this.devs = new ArrayList<>();
     }
 
-    public VideoGame() {
-        super();
-        this.playtime = 0;
-        this.devs = new ArrayList<>();
-    }
-    @Override
-    public void addTags(ArrayList<String> tags) {
-        for (String tag : tags) {
-            this.addTag(tag);
-        }
-
-    }
-
     @Override
     public String toString() {
         String lockedTitle = "";
@@ -46,18 +33,18 @@ public class VideoGame extends Media {
         String devsList = "";
 
         String score = "";
-        if (isLocked){
+        if (isLocked) {
             lockedTitle = "------------------[LOCKED TITLE]------------------";
         }
         if (!tags.isEmpty()) {
-            tagsList = tags.getFirst();
+            tagsList = tags.get(0);
             for (int i = 1; i < tags.size(); i++) {
                 tagsList += ", " + tags.get(i);
             }
         }
 
         if (!devs.isEmpty()) {
-            devsList = devs.getFirst();
+            devsList = devs.get(0);
             for (int i = 1; i < devs.size(); i++) {
                 tagsList += ", " + devs.get(i);
             }
@@ -77,29 +64,29 @@ public class VideoGame extends Media {
 
         return String.format("""
 
-TV Show Viewer: %s
-%s
-Name: %s
-Developers: %s
-Gameplay Duration: %s
-Studio: %s
-Target Age: %s+
-Status: %s
-Tags: %s
-                
-Description:
-%s
-                
-Review: %s
-Rating: %s
-                """, id, lockedTitle, name, devsList, playtime, publishing,
+                        TV Show Viewer: %s
+                        %s
+                        Name: %s
+                        Developers: %s
+                        Gameplay Duration: %s
+                        Studio: %s
+                        Target Age: %s+
+                        Status: %s
+                        Tags: %s
+                                        
+                        Description:
+                        %s
+                                        
+                        Review: %s
+                        Rating: %s
+                                        """, id, lockedTitle, name, devsList, playtime, publishing,
                 targetAge, watchedStatus, tagsList, description, review, score);
     }
 
     @Override
     public void printDetails() {
         String stars = "   ";
-        if (rating == -1){
+        if (rating == -1) {
             stars = "No rating";
         } else {
             for (int i = 0; i < rating; i++) {
@@ -107,7 +94,7 @@ Rating: %s
             }
         }
         String age;
-        if (targetAge == 0){
+        if (targetAge == 0) {
             age = "No age given";
         } else {
             age = Integer.toString(targetAge);
@@ -115,12 +102,13 @@ Rating: %s
 
         String formatted_name;
 
-        if (name.length() > 18){
+        if (name.length() > 18) {
             formatted_name = name.substring(0, 15) + "...";
         } else {
             formatted_name = name;
         }
-        System.out.printf("║%-18s║%-18s║ Video Game ║%-14s║%-12s║%-12s║%-9s║\n", formatted_name, id, age, stars, getWatchedStatus(), isLocked);
+        System.out.printf("║%-18s║%-18s║ Video Game ║%-14s║%-12s║%-12s║%-9s║\n", formatted_name, id, age, stars,
+                getWatchedStatus(), isLocked);
 
     }
 
