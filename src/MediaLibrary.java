@@ -129,12 +129,12 @@ public class MediaLibrary {
 
             while (left < right) {
 
-                while (currentList.get(right).getId().compareTo(pivot.getId()) >= 0 && left < right) {
+                while (currentList.get(right).getId().compareTo(pivot.getId()) <= 0 && left < right) {
                     right--;
                 }
                 currentList.set(left, currentList.get(right));
 
-                while (currentList.get(left).getId().compareTo(pivot.getId()) <= 0 && left < right) {
+                while (currentList.get(left).getId().compareTo(pivot.getId()) >= 0 && left < right) {
                     left++;
                 }
                 currentList.set(right, currentList.get(left));
