@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Movie extends Media {
 
@@ -70,7 +69,69 @@ public class Movie extends Media {
 
     @Override
     public String toString() {
-        return "";
+        String lockedTitle = "";
+        String tagsList = "";
+        String producersList = "";
+        String actorsList = "";
+
+        String score = "";
+        if (isLocked){
+            lockedTitle = "------------------[LOCKED TITLE]------------------";
+        }
+        if (!tags.isEmpty()) {
+            tagsList = tags.getFirst();
+            for (int i = 1; i < tags.size(); i++) {
+                tagsList += ", " + tags.get(i);
+            }
+        }
+
+        if (!producers.isEmpty()) {
+            producersList = producers.getFirst();
+            for (int i = 1; i < producers.size(); i++) {
+                tagsList += ", " + producers.get(i);
+            }
+        }
+
+        if (!starActors.isEmpty()) {
+            actorsList = starActors.getFirst();
+            for (int i = 1; i < starActors.size(); i++) {
+                actorsList += ", " + starActors.get(i);
+            }
+        }
+
+        if (rating != -1) {
+            for (int i = 0; i < rating; i++) {
+                score += "★";
+            }
+
+            for (int i = 0; i < 5 - rating; i++) {
+                score += "☆";
+            }
+        } else {
+            score = "No rating";
+        }
+
+        return String.format("""
+
+TV Show Viewer: %s
+%s
+Name: %s
+Director: %s
+Producer(s): %s
+Duration: %s min
+Star Actors: %s
+Studio: %s
+Target Age: %s+
+Status: %s
+Tags: %s
+                
+Description:
+%s
+                
+Review: %s
+Rating: %s
+                """, id, lockedTitle, name, director, producersList, duration, actorsList, publishing,
+                targetAge, watchedStatus, tagsList, description, review, score);
     }
 
     @Override
@@ -79,19 +140,18 @@ public class Movie extends Media {
         if (rating == -1){
             stars = "No rating";
         } else {
-            String rate = "";
             for (int i = 0; i < rating; i++) {
                 stars += "*";
             }
         }
-        String age = "";
+        String age;
         if (targetAge == 0){
             age = "No age given";
         } else {
             age = Integer.toString(targetAge);
         }
 
-        String formatted_name = "";
+        String formatted_name;
 
         if (name.length() > 18){
             formatted_name = name.substring(0, 15) + "...";

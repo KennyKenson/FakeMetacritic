@@ -129,7 +129,7 @@ Type "back" to leave.""");
                                 ArrayList<String> devs = getArraylist("Enter the developers of the game.");// create a method to get string arrays
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
-                                        Integer.toString(devs.get(0).charAt(0)) +
+                                        Integer.toString(devs.getFirst().charAt(0)) +
                                         Integer.toString(playtime).charAt(0) + Integer.toString(age).charAt(0) +
                                         Integer.toString(desc.charAt(0)) + Integer.toString(studio.charAt(0)));
 
