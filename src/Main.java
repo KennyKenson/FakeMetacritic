@@ -494,6 +494,11 @@ Type "back" to leave.""");
 
     }
 
+    /**
+     * Program that gets valid integer from user.
+     * @param msg Message shown to user.
+     * @return Integer value.
+     */
     public static Integer getInt(String msg) {
         System.out.println(msg);
         System.out.print("> ");
@@ -535,6 +540,12 @@ Type "back" to leave.""");
         return list;
     }
 
+    /**
+     * Gets valid Media object from user when they input the media's name or ID.
+     * @param msg Message shown to user.
+     * @param media The Media object.
+     * @return Valid Media object.
+     */
     public static String getValidMedia(String msg, ArrayList<Media> media){
 
         System.out.println(msg);
@@ -568,6 +579,11 @@ Type "back" to leave.""");
         return id;
     }
 
+    /**
+     * Interface to unlock a piece of media.
+     * @param id ID for a Media object.
+     * @return The ID of the target Media object.
+     */
     public static String unlockMedia(String id){
         String input;
         Media m = mediaLib.searchMedia(id);
@@ -585,10 +601,16 @@ Type "back" to leave.""");
         return null;
     }
 
+    /**
+     * Prints an intermediate message before going to the next screen.
+     */
     public static void next() {
         getString("Press enter to continue: ");
     }
 
+    /**
+     * Introductory message when the program starts.
+     */
     public static void intro() {
         System.out.println("Ladies, gentlemen, and Mr. Cho...");
         next();
@@ -611,6 +633,9 @@ Type "back" to leave.""");
 
     }
 
+    /**
+     * Prints the main menu of Fake Metacritic.
+     */
     public static void printMenu() {
         if (mediaLib != null) {
 
