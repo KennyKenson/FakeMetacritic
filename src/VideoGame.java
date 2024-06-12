@@ -24,6 +24,7 @@ public class VideoGame extends Media {
         super(id, name);
         this.playtime = 0;
         this.devs = new ArrayList<>();
+        devs.add("N/A");
     }
 
     @Override

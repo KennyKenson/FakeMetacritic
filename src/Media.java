@@ -260,7 +260,7 @@ abstract class Media {
      */
     public void addTag(String tag) {
         if (!tags.contains(tag)) {
-            tags.add(tag);
+            tags.add(tag.toUpperCase());
         }
     }
 

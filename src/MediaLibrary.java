@@ -7,7 +7,7 @@ public class MediaLibrary {
 
     private ArrayList<Media> mediaList;
     private ArrayList<Media> currentList;
-    String DEFAULT_FILE = "media";
+    String DEFAULT_FILE = "mediaLib";
 
     /**
      * Constructor for MediaLibrary.
@@ -450,52 +450,52 @@ public class MediaLibrary {
             String line = reader.readLine();
             while (line != null) {
                 mediaInfo = line.split("~");
-                id = mediaInfo[0];
-                name = mediaInfo[1];
-                rating = Integer.parseInt(mediaInfo[2]);
-                review = mediaInfo[3];
-                targetAge = Integer.parseInt(mediaInfo[4]);
-                description = mediaInfo[5];
-                publishing = mediaInfo[6];
+                id = mediaInfo[0]; // writer.write(media.getId() + "~");
+                name = mediaInfo[1]; // writer.write(media.getName() + "~");
+                review = mediaInfo[2]; // writer.write(media.getReview() + "~");
+                rating = Integer.parseInt(mediaInfo[3]); // writer.write(media.getRating() + "~");
+                targetAge = Integer.parseInt(mediaInfo[4]); // writer.write(media.getTargetAge() + "~");
+                description = mediaInfo[7]; // writer.write(media.getIsLocked() + "~");
+                publishing = mediaInfo[8]; // writer.write(media.getWatchedStatus() + "~");
 
                 identifier = id.substring(0, 1);
 
                 switch (identifier) {
                     case "B":
-                        pages = Integer.parseInt(mediaInfo[7]);
-                        author = mediaInfo[8];
+                        pages = Integer.parseInt(mediaInfo[9]);
+                        author = mediaInfo[10];
                         mediaList.add(new Book(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, pages, author));
-                        tags = mediaInfo[9].split("_");
+                        tags = mediaInfo[11].split("_");
                         break;
                     case "T":
-                        seasons = Integer.parseInt(mediaInfo[7]);
-                        episodes = Integer.parseInt(mediaInfo[8]);
-                        producers = mediaInfo[9].split("_");
-                        director = mediaInfo[10];
-                        starActors = mediaInfo[11].split("_");
+                        seasons = Integer.parseInt(mediaInfo[9]);
+                        episodes = Integer.parseInt(mediaInfo[10]);
+                        producers = mediaInfo[11].split("_");
+                        director = mediaInfo[12];
+                        starActors = mediaInfo[13].split("_");
                         mediaList.add(new TvShow(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 seasons, episodes, toArrayList(producers), director, toArrayList(starActors)));
-                        tags = mediaInfo[12].split("_");
+                        tags = mediaInfo[14].split("_");
                         break;
                     case "M":
-                        duration = Integer.parseInt(mediaInfo[7]);
-                        producers = mediaInfo[8].split("_");
-                        director = mediaInfo[9];
-                        starActors = mediaInfo[10].split("_");
+                        duration = Integer.parseInt(mediaInfo[9]);
+                        producers = mediaInfo[10].split("_");
+                        director = mediaInfo[11];
+                        starActors = mediaInfo[12].split("_");
                         mediaList.add(new Movie(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, duration,
                                 toArrayList(producers), director, toArrayList(starActors)));
-                        tags = mediaInfo[11].split("_");
+                        tags = mediaInfo[13].split("_");
                         break;
                     case "V":
-                        playtime = Integer.parseInt(mediaInfo[7]);
-                        devs = mediaInfo[8].split("_");
+                        playtime = Integer.parseInt(mediaInfo[9]);
+                        devs = mediaInfo[10].split("_");
                         mediaList.add(new VideoGame(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 playtime, toArrayList(devs)));
-                        tags = mediaInfo[9].split("_");
+                        tags = mediaInfo[11].split("_");
                         break;
                     //Need to initialize 'tags' in default so next for-loop works.
                     default:

@@ -67,19 +67,11 @@ public class Movie extends Media {
         super(id, name);
         this.duration = 0;
         this.producers = new ArrayList<>();
+        producers.add("N/A");
         this.director = "N/A";
         this.starActors = new ArrayList<>();
-    }
+        starActors.add("N/A");
 
-    /**
-     * Constructor with no parameters.
-     */
-    public Movie() {
-        super();
-        this.duration = 0;
-        this.producers = new ArrayList<>();
-        this.director = "N/A";
-        this.starActors = new ArrayList<>();
     }
 
     /**

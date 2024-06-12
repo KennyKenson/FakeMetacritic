@@ -34,8 +34,10 @@ public class TvShow extends Media {
         this.seasons = 0;
         this.episodes = 0;
         this.producers = new ArrayList<>();
+        producers.add("N/A");
         this.director = "N/A";
         this.starActors = new ArrayList<>();
+        starActors.add("N/A");
     }
 
 

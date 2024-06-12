@@ -8,16 +8,18 @@
 ╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩════════════╩═════════╝
 
  --Media Handling--           --Edit Current List--           --View All--           --Import/Export--
-  1 > add media  (d)          11 > filter media 	          14 > Books	         18 > Import
-  2 > remove media  (d)       12 > sort media          		  15 > TV Shows	         19 > Export
-  3 > rate media (d)          13 > reset Current List         16 > Movies
-  4 > review media (d)                                        17 > Video Games
+  1 > add media  (d)          13 > filter media 	          17 > Books	         21 > Import
+  2 > remove media  (d)       14 > sort media          		  18 > TV Shows	         22 > Export
+  3 > rate media (d)          15 > reset Current List         19 > Movies
+  4 > review media (d)        16 > reverse Current List       20 > Video Games
   5 > remove rating (d)
   6 > remove review (d)
   7 > lock media (d)
   8 > get random media (d)
   9 > find media (d)
  10 > change watched status (d)
+ 11 > add tags to media
+ 12 > change target age
 
 
 

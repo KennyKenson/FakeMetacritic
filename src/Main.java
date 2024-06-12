@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Main {
     static final String FILE_PATH = "src/";
-    static final String DEFAULT_FILE = "mediaLib.csv";
     static final Scanner READER = new Scanner(System.in);
     static MediaLibrary mediaLib = null;
 
@@ -19,19 +18,19 @@ public class Main {
         intro();
 
         String choice;
-        String filename = "";
+        String filename = mediaLib.DEFAULT_FILE;
 
         boolean run = true;
         boolean success;
 
         while (run) {
-            printMenu();
 
-            if (mediaLib != null) {
-                choice = getString();
-            } else {
+            if (mediaLib.getMediaList().isEmpty()) {
                 System.out.println("No file has been detected in the system. Please load a file to continue.");
-                choice = "18";
+                choice = "21";
+            } else {
+                printMenu();
+                choice = getString();
             }
 
             switch (choice) {
@@ -356,7 +355,7 @@ public class Main {
                 }
 
                 case "12": {
-                    String id = getValidMedia("Enter the media you want to add tags to: ", mediaLib.getMediaList());
+                    String id = getValidMedia("Enter the media you want to change the target age of: ", mediaLib.getMediaList());
 
                     if (id != null) {
                         int age = getInt("Enter the target age of the media: ");
@@ -492,10 +491,12 @@ public class Main {
                     mediaLib = new MediaLibrary();
                     while (!success) {
                         filename = getString("Enter a filename to import (default location: " + FILE_PATH + "): ");
+
                         if (filename.isEmpty()) {
-                            filename = DEFAULT_FILE;
+                            filename = mediaLib.DEFAULT_FILE;
                         }
-                        success = mediaLib.importMediaList(FILE_PATH + filename);
+                        System.out.println(filename);
+                        success = mediaLib.importMediaList(FILE_PATH + filename + ".txt");
                         if (success) {
                             System.out.println("Media successfully loaded.\n ");
                         } else {
@@ -509,7 +510,7 @@ public class Main {
                     String whichList;
                     while (true) {
                         whichList = getString("""
-                                Enter the following to export that list:
+                                Which list do you want to export?:
                                 1 > List of all media
                                 2 > Current list""");
                         if (whichList.equals("1") || whichList.equals("2")) {
@@ -519,15 +520,15 @@ public class Main {
                     }
                     success = false;
                     while (!success) {
-                        choice = getString("Do you want to use the same filename (" + filename + ")? (y/n) ");
+                        choice = getString("Do you want to use the same filename (" + filename + ".txt)? (y/n) ");
                         if (!choice.equals("y")) {
                             filename = getString("Enter a filename to save: ");
                         }
                         System.out.println("Saving file...");
                         if (whichList.equals("1")) {
-                            success = mediaLib.exportMediaList(FILE_PATH + filename);
+                            success = mediaLib.exportMediaList(FILE_PATH + filename + ".txt");
                         } else {
-                            success = mediaLib.exportCurrentList(FILE_PATH + filename);
+                            success = mediaLib.exportCurrentList(FILE_PATH + filename + ".txt");
                         }
                         if (success) {
                             System.out.println("Media list saved!");
@@ -542,9 +543,11 @@ public class Main {
                     System.out.println("\nInvalid choice!\n");
                 }
             }
-            next();
+            if (!choice.equals("0")){
+                next();
+            }
         }
-
+        credits();
     }
 
     /**
@@ -607,7 +610,9 @@ public class Main {
             if (input.equals("-1")) {
                 break;
             } else {
-                list.add(input);
+                if (!input.isEmpty()) {
+                    list.add(input);
+                }
             }
         }
 
@@ -693,7 +698,7 @@ public class Main {
         next();
         System.out.println("Aadhya and Ken presents...");
         next();
-        System.out.println("A dataset that will blow your minds!");
+        System.out.println("A database system that will blow your minds!");
         next();
         System.out.println("Introducing.....");
         System.out.println("*insert drum roll effect here*");
@@ -722,18 +727,30 @@ public class Main {
                     Select an option:
 
                      --Media Handling--           --Edit Current List--           --View All--           --Import/Export--
-                      1 > add media               12 > filter media 	          15 > Books	         19 > Import
-                      2 > remove media            13 > sort media          		  16 > TV Shows	         20 > Export
-                      3 > rate media              14 > reset Current List         17 > Movies
-                      4 > review media                                            18 > Video Games
-                      5 > remove rating  \s
-                      6 > remove review   \s
-                      7 > lock media   \s
-                      8 > get random media   \s
-                      9 > find media   \s
-                     10 > change watched status   \s
-                     11 > add tag to media
+                      1 > add media               13 > filter media 	          17 > Books	         21 > Import
+                      2 > remove media            14 > sort media          		  18 > TV Shows	         22 > Export
+                      3 > rate media              15 > reset Current List         19 > Movies
+                      4 > review media            16 > reverse Current List       20 > Video Games
+                      5 > remove rating
+                      6 > remove review
+                      7 > lock media
+                      8 > get random media
+                      9 > find media
+                     10 > change watched status
+                     11 > add tags to media
+                     12 > change target age
+                     
+                     0 > exit
                      """);
         }
+    }
+
+    public static void credits(){
+        System.out.println("""
+                A database system by Aadhya Anand and Ken Chignell-Mizobuchi.
+                Fake Metacritic is not affiliated with metacritic.com
+                This is a culminating project for ICS4U0-2 taught by Fredrick Cho.
+                Fancy ASCII text was generated from https://patorjk.com/software/taag/
+                """);
     }
 }
