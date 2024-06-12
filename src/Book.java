@@ -3,6 +3,20 @@ public class Book extends Media {
     private int pages;
     private String author;
 
+    /**
+     * Constructor for Book.
+     * @param id ID of book.
+     * @param name Name of book.
+     * @param review Review of the book.
+     * @param rating Rating from 0-5.
+     * @param targetAge Age rating of the book.
+     * @param isLocked The book's lock status.
+     * @param watchedStatus The book's watch status.
+     * @param description A description of the book.
+     * @param publishing Name of the company that licensed the book.
+     * @param pages Number of pages the book has.
+     * @param author The book's author.
+     */
     public Book(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
                 String description, String publishing, int pages, String author) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
@@ -10,32 +24,61 @@ public class Book extends Media {
         this.author = author;
     }
 
+    /**
+     * Constructor that requires only name and ID.
+     * @param id
+     * @param name
+     */
     public Book(String id, String name) {
         super(id, name);
         this.pages = 0;
         this.author = "N/A";
     }
 
-    public Book(String id, String name, String author, int pages, int age, String description, String publishing) {
-        super(id, name, age, description, publishing);
+    /**
+     * Constructor that doesn't require a review, rating, watched or lock status.
+     * @param id ID of the book.
+     * @param name Name of the book.
+     * @param author Book's author.
+     * @param pages Number of pages the book has.
+     * @param targetAge Book's age rating.
+     * @param description Description for the book.
+     * @param publishing Name of the company that licensed the book.
+     */
+    public Book(String id, String name, String author, int pages, int targetAge, String description, String publishing) {
+        super(id, name, targetAge, description, publishing);
         this.pages = pages;
         this.author = author;
     }
 
+    /**
+     * Constructor that requires no parameters.
+     */
     public Book() {
         super();
         this.pages = 0;
         this.author = "N/A";
     }
 
+    /**
+     * Getter for pages.
+     * @return pages
+     */
     public int getPages() {
         return pages;
     }
 
+    /**
+     * Getter for author.
+     * @return author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Prints details regarding the object's fields.
+     */
     @Override
     public void printDetails() {
         String stars = "   ";
@@ -64,6 +107,10 @@ public class Book extends Media {
                 formatted_name, id, age, stars, getWatchedStatus(), isLocked);
     }
 
+    /**
+     * Print method for Book objects.
+     * @return String to be printed.
+     */
     @Override
     public String toString() {
         String lockedTitle = "";

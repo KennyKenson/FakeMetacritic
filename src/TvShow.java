@@ -8,6 +8,23 @@ public class TvShow extends Media {
     String director;
     ArrayList<String> starActors;
 
+    /**
+     * Constructor for TvShow.
+     * @param id ID of the show.
+     * @param name Name of the show.
+     * @param review A review for the show.
+     * @param rating Rating from 0-5 for the show.
+     * @param targetAge The show's age rating.
+     * @param isLocked The show's lock status.
+     * @param watchedStatus The show's watch status.
+     * @param description The show's description.
+     * @param publishing Name of the company that licensed the show.
+     * @param seasons Number of seasons the show has.
+     * @param episodes Number of episodes the show has.
+     * @param producers Producers for the show.
+     * @param director The show's director.
+     * @param starActors Notable actors in the show.
+     */
     public TvShow(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
                   String description, String publishing, int seasons, int episodes, ArrayList<String> producers,
                   String director, ArrayList<String> starActors) {
@@ -19,9 +36,22 @@ public class TvShow extends Media {
         this.starActors = starActors;
     }
 
-    public TvShow(String id, String name, int age, String description, String publishing, int seasons, int episodes,
+    /**
+     * Constructor that doesn't require a review, rating, watched or lock status.
+     * @param id ID of the show.
+     * @param name Name of the show.
+     * @param targetAge Age rating of the show.
+     * @param description Description for the show.
+     * @param publishing Name of the company that licensed the show.
+     * @param seasons Number of seasons the show has.
+     * @param episodes Number of episodes the show has.
+     * @param producers Show's producers.
+     * @param director Show's director.
+     * @param starActors Notable actors in the show.
+     */
+    public TvShow(String id, String name, int targetAge, String description, String publishing, int seasons, int episodes,
                   ArrayList<String> producers, String director, ArrayList<String> starActors) {
-        super(id, name, age, description, publishing);
+        super(id, name, targetAge, description, publishing);
         this.seasons = seasons;
         this.episodes = episodes;
         this.producers = producers;
@@ -29,6 +59,11 @@ public class TvShow extends Media {
         this.starActors = starActors;
     }
 
+    /**
+     * Constructor that requires only name and ID.
+     * @param id ID of the show.
+     * @param name Name of the show.
+     */
     public TvShow(String id, String name) {
         super(id, name);
         this.seasons = 0;
@@ -40,7 +75,10 @@ public class TvShow extends Media {
         starActors.add("N/A");
     }
 
-
+    /**
+     * Print method for TvShow objects.
+     * @return String to be printed.
+     */
     @Override
     public String toString() {
         String lockedTitle = "";
@@ -109,6 +147,9 @@ public class TvShow extends Media {
                 actorsList, publishing, targetAge, watchedStatus, tagsList, description, review, score);
     }
 
+    /**
+     * Prints details regarding the object's fields.
+     */
     @Override
     public void printDetails() {
         String stars = "   ";
@@ -139,22 +180,42 @@ public class TvShow extends Media {
 
     }
 
+    /**
+     * Getter for seasons.
+     * @return seasons
+     */
     public int getSeasons() {
         return seasons;
     }
 
+    /**
+     * Getter for episodes.
+     * @return episodes
+     */
     public int getEpisodes() {
         return episodes;
     }
 
+    /**
+     * Getter for producers.
+     * @return producers
+     */
     public ArrayList<String> getProducers() {
         return producers;
     }
 
+    /**
+     * Getter for director.
+     * @return director.
+     */
     public String getDirector() {
         return director;
     }
 
+    /**
+     * Getter for starActors.
+     * @return starActors
+     */
     public ArrayList<String> getStarActors() {
         return starActors;
     }

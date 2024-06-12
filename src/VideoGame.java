@@ -5,6 +5,20 @@ public class VideoGame extends Media {
     private int playtime;
     private ArrayList<String> devs;
 
+    /**
+     * Constructor for VideoGame.
+     * @param id ID of game.
+     * @param name Name of game.
+     * @param review Review for the game.
+     * @param rating Rating from 0-5 for the game.
+     * @param targetAge The game's age rating.
+     * @param isLocked Lock status for the game.
+     * @param watchedStatus Watch status for the game.
+     * @param description The game's description.
+     * @param publishing Name of the company that licensed the game.
+     * @param playtime The game's playtime.
+     * @param devs Developers for the game.
+     */
     public VideoGame(String id, String name, String review, int rating, int targetAge,
                      boolean isLocked, int watchedStatus, String description, String publishing,
                      int playtime, ArrayList<String> devs) {
@@ -13,13 +27,28 @@ public class VideoGame extends Media {
         this.devs = devs;
     }
 
-    public VideoGame(String id, String name, int age, String description, String publishing,
+    /**
+     * Constructor that doesn't require a review, rating, watched or lock status.
+     * @param id ID of the game.
+     * @param name Name of the game.
+     * @param targetAge Game's age rating.
+     * @param description Game's description.
+     * @param publishing Name of the company that licensed the game.
+     * @param playtime Game's playtime.
+     * @param devs Developers for the game.
+     */
+    public VideoGame(String id, String name, int targetAge, String description, String publishing,
                      int playtime, ArrayList<String> devs) {
-        super(id, name, age, description, publishing);
+        super(id, name, targetAge, description, publishing);
         this.playtime = playtime;
         this.devs = devs;
     }
 
+    /**
+     * Constructor that requires only name and ID.
+     * @param id ID of the game.
+     * @param name Name of the game.
+     */
     public VideoGame(String id, String name) {
         super(id, name);
         this.playtime = 0;
@@ -27,6 +56,10 @@ public class VideoGame extends Media {
         devs.add("N/A");
     }
 
+    /**
+     * Print method for VideoGame objects.
+     * @return String to be printed.
+     */
     @Override
     public String toString() {
         String lockedTitle = "";
@@ -84,6 +117,9 @@ public class VideoGame extends Media {
                 targetAge, watchedStatus, tagsList, description, review, score);
     }
 
+    /**
+     * Prints details regarding the game's fields.
+     */
     @Override
     public void printDetails() {
         String stars = "   ";
@@ -113,10 +149,18 @@ public class VideoGame extends Media {
 
     }
 
+    /**
+     * Getter for playtime.
+     * @return playtime
+     */
     public int getPlaytime() {
         return playtime;
     }
 
+    /**
+     * Getter for devs.
+     * @return devs
+     */
     public ArrayList<String> getDevs() {
         return devs;
     }
