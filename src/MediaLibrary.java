@@ -268,7 +268,7 @@ public class MediaLibrary {
      */
     public void rateMedia(String id, int score) {
         Media media = searchMedia(id);
-        if (score > 0) {
+        if (score >= 0 && score <= 5) {
             media.changeRating(score);
         }
     }

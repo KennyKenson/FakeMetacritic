@@ -209,6 +209,7 @@ abstract class Media {
      * @param score The new rating.
      */
     public void changeRating(int score) {
+
         this.rating = score;
     }
 

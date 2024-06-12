@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         mediaLib = new MediaLibrary();
-        mediaLib.addMedia(new Book("B1234567", "The Odyssey", "Homer", 123, 13,
+        /*mediaLib.addMedia(new Book("B1234567", "The Odyssey", "Homer", 123, 13,
                 "A poem about the story of Odysseus, king of Ithaca, who wanders for 10 years (although the " +
                         "action of the poem covers only the final six weeks) trying to get home after the Trojan War.",
                 "Penguin Publishing"));
@@ -32,7 +31,7 @@ public class Main {
                 "illness probably will ruin his family financially, Walter makes a desperate bid to earn as much money " +
                 "as he can in the time he has left by turning an old RV into a meth lab on wheels.", "High Bridge " +
                 "Entertainment, Gran Via Productions, Sony Pictures Television", 5, 62, null,
-                "Vince Gilligan", null));
+                "Vince Gilligan", null));*/
         mediaLib.resetCurrentList(); //Need to load info from mediaList onto currentList.
         intro();
 
@@ -223,7 +222,17 @@ public class Main {
                     String id = unlockMedia(getValidMedia("Select a media to rate. " +
                             "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
                     if (id != null) {
-                        int score = getInt("Rate the media from 0-5 stars: ");
+                        boolean isInvalid = true;
+                        int score = -1;
+                        while (isInvalid) {
+                            score = getInt("Rate the media from 0-5 stars: ");
+                            if (score >= 0 && score <= 5) {
+                                isInvalid = false;
+                            }
+                            if (isInvalid) {
+                                System.out.println("That is an invalid rating. Please try again.");
+                            }
+                        }
                         mediaLib.rateMedia(id, score);
                         System.out.println("Rating was successful!");
                     }
@@ -516,12 +525,11 @@ public class Main {
                     success = false;
                     mediaLib = new MediaLibrary();
                     while (!success) {
-                        filename = getString("Enter a filename to import (default location: " + FILE_PATH + "): ");
+                        filename = getString("Enter a filename to import. Press enter to use the default file (" + mediaLib.DEFAULT_FILE + ".txt): ");
 
                         if (filename.isEmpty()) {
                             filename = mediaLib.DEFAULT_FILE;
                         }
-                        System.out.println(filename);
                         success = mediaLib.importMediaList(FILE_PATH + filename + ".txt");
                         if (success) {
                             System.out.println("Media successfully loaded.\n ");
