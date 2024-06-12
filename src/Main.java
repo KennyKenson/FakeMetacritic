@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -307,26 +308,31 @@ public class Main {
                                 case "0": {
                                     m.changeWatchedStatus(0);
                                     isInvalid = false;
+                                    System.out.println("Success!");
                                     break;
                                 }
                                 case "1": {
                                     m.changeWatchedStatus(1);
                                     isInvalid = false;
+                                    System.out.println("Success!");
                                     break;
                                 }
                                 case "2": {
                                     m.changeWatchedStatus(2);
                                     isInvalid = false;
+                                    System.out.println("Success!");
                                     break;
                                 }
                                 case "3": {
                                     m.changeWatchedStatus(3);
                                     isInvalid = false;
+                                    System.out.println("Success!");
                                     break;
                                 }
                                 case "4": {
                                     m.changeWatchedStatus(4);
                                     isInvalid = false;
+                                    System.out.println("Success!");
                                     break;
                                 }
                                 case BACK_VALUE: {
@@ -380,6 +386,7 @@ public class Main {
                                 mediaLib.filterMedia(age);
 
                                 isInvalid = false;
+                                System.out.println("Current list successfully filtered");
                                 break;
                             }
                             case "2": {
@@ -387,6 +394,7 @@ public class Main {
                                 mediaLib.filterRating(rating);
 
                                 isInvalid = false;
+                                System.out.println("Current list successfully filtered");
                                 break;
                             }
                             case "3": {
@@ -394,6 +402,7 @@ public class Main {
                                 mediaLib.filterMedia(keyword);
 
                                 isInvalid = false;
+                                System.out.println("Current list successfully filtered");
                                 break;
                             }
                             case BACK_VALUE: {
@@ -405,10 +414,6 @@ public class Main {
                             }
                         }
                     }
-
-                    System.out.println("Current list successfully filtered");
-
-
                     break;
                 }
 
@@ -426,16 +431,19 @@ public class Main {
                             case "1": {
                                 mediaLib.sortMediaByName();
                                 isInvalid = false;
+                                System.out.println("Current list successfully sorted.");
                                 break;
                             }
                             case "2": {
                                 mediaLib.sortMediaByRating();
                                 isInvalid = false;
+                                System.out.println("Current list successfully sorted.");
                                 break;
                             }
                             case "3": {
                                 mediaLib.sortMediaById();
                                 isInvalid = false;
+                                System.out.println("Current list successfully sorted.");
                                 break;
                             }
                             case BACK_VALUE: {
@@ -447,7 +455,6 @@ public class Main {
                             }
                         }
                     }
-                    System.out.println("Current list successfully sorted.");
                     break;
                 }
 
@@ -459,6 +466,7 @@ public class Main {
 
                 case "16": {
                     mediaLib.reverseList();
+                    System.out.println("List successfully reversed.");
                     break;
                 }
 
@@ -508,6 +516,7 @@ public class Main {
 
                 case "22": {
                     String whichList;
+                    success = false;
                     while (true) {
                         whichList = getString("""
                                 Which list do you want to export?:
@@ -515,10 +524,12 @@ public class Main {
                                 2 > Current list""");
                         if (whichList.equals("1") || whichList.equals("2")) {
                             break;
+                        } else if (whichList.equals(BACK_VALUE)) {
+                            success = true;
+                            break;
                         }
                         System.out.println("Invalid choice. Try again. ");
                     }
-                    success = false;
                     while (!success) {
                         choice = getString("Do you want to use the same filename (" + filename + ".txt)? (y/n) ");
                         if (!choice.equals("y")) {
