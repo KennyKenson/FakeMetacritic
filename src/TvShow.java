@@ -5,7 +5,7 @@ public class TvShow extends Media {
     int seasons;
     int episodes;
     ArrayList<String> producers;
-    String director;
+    String creator;
     ArrayList<String> starActors;
 
     /**
@@ -22,17 +22,17 @@ public class TvShow extends Media {
      * @param seasons Number of seasons the show has.
      * @param episodes Number of episodes the show has.
      * @param producers Producers for the show.
-     * @param director The show's director.
+     * @param creator The show's creator.
      * @param starActors Notable actors in the show.
      */
     public TvShow(String id, String name, String review, int rating, int targetAge, boolean isLocked, int watchedStatus,
                   String description, String publishing, int seasons, int episodes, ArrayList<String> producers,
-                  String director, ArrayList<String> starActors) {
+                  String creator, ArrayList<String> starActors) {
         super(id, name, review, rating, targetAge, isLocked, watchedStatus, description, publishing);
         this.seasons = seasons;
         this.episodes = episodes;
         this.producers = producers;
-        this.director = director;
+        this.creator = creator;
         this.starActors = starActors;
     }
 
@@ -46,16 +46,16 @@ public class TvShow extends Media {
      * @param seasons Number of seasons the show has.
      * @param episodes Number of episodes the show has.
      * @param producers Show's producers.
-     * @param director Show's director.
+     * @param creator Show's creator.
      * @param starActors Notable actors in the show.
      */
     public TvShow(String id, String name, int targetAge, String description, String publishing, int seasons, int episodes,
-                  ArrayList<String> producers, String director, ArrayList<String> starActors) {
+                  ArrayList<String> producers, String creator, ArrayList<String> starActors) {
         super(id, name, targetAge, description, publishing);
         this.seasons = seasons;
         this.episodes = episodes;
         this.producers = producers;
-        this.director = director;
+        this.creator = creator;
         this.starActors = starActors;
     }
 
@@ -70,7 +70,7 @@ public class TvShow extends Media {
         this.episodes = 0;
         this.producers = new ArrayList<>();
         producers.add("N/A");
-        this.director = "N/A";
+        this.creator = "N/A";
         this.starActors = new ArrayList<>();
         starActors.add("N/A");
     }
@@ -90,28 +90,30 @@ public class TvShow extends Media {
         if (isLocked) {
             lockedTitle = "------------------[LOCKED TITLE]------------------";
         }
-        if (!tags.isEmpty()) {
+        if (tags != null && !tags.isEmpty()) {
             tagsList = tags.get(0);
             for (int i = 1; i < tags.size(); i++) {
                 tagsList += ", " + tags.get(i);
             }
         }
 
-        if (!producers.isEmpty()) {
+        if (producers != null && !producers.isEmpty()) {
             producersList = producers.get(0);
             for (int i = 1; i < producers.size(); i++) {
                 tagsList += ", " + producers.get(i);
             }
         }
 
-        if (!starActors.isEmpty()) {
+        if (starActors != null && !starActors.isEmpty()) {
             actorsList = starActors.get(0);
             for (int i = 1; i < starActors.size(); i++) {
                 actorsList += ", " + starActors.get(i);
             }
         }
 
-        if (rating != -1) {
+        if (rating == -1){
+            score = "No rating";
+        } else {
             for (int i = 0; i < rating; i++) {
                 score += "★";
             }
@@ -119,8 +121,6 @@ public class TvShow extends Media {
             for (int i = 0; i < 5 - rating; i++) {
                 score += "☆";
             }
-        } else {
-            score = "No rating";
         }
 
         return String.format("""
@@ -143,7 +143,7 @@ public class TvShow extends Media {
                                         
                         Review: %s
                         Rating: %s
-                                        """, id, lockedTitle, name, director, producersList, seasons, episodes,
+                                        """, id, lockedTitle, name, creator, producersList, seasons, episodes,
                 actorsList, publishing, targetAge, watchedStatus, tagsList, description, review, score);
     }
 
@@ -153,8 +153,10 @@ public class TvShow extends Media {
     @Override
     public void printDetails() {
         String stars = "   ";
-        if (rating == -1) {
+        if (this.rating == -1) {
             stars = "No rating";
+        } else if (this.rating == 0) {
+            stars = "   ";
         } else {
             for (int i = 0; i < rating; i++) {
                 stars += "*";
@@ -208,8 +210,8 @@ public class TvShow extends Media {
      * Getter for director.
      * @return director.
      */
-    public String getDirector() {
-        return director;
+    public String getCreator() {
+        return creator;
     }
 
     /**

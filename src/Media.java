@@ -57,6 +57,7 @@ abstract class Media {
         this.description = description;
         this.publishing = publishing;
         this.tags = new ArrayList<>();
+        this.rating = -1;
     }
 
     /**
