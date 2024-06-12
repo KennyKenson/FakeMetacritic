@@ -466,36 +466,72 @@ public class MediaLibrary {
                         author = mediaInfo[10];
                         mediaList.add(new Book(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, pages, author));
-                        tags = mediaInfo[11].split("_");
+                        if (!mediaInfo[11].equals("No tags")) {
+                            tags = mediaInfo[11].split("_");
+                        } else {
+                            tags = new String[0];
+                        }
                         break;
                     case "T":
                         seasons = Integer.parseInt(mediaInfo[9]);
                         episodes = Integer.parseInt(mediaInfo[10]);
-                        producers = mediaInfo[11].split("_");
+                        if (mediaInfo[11] != null) {
+                            producers = mediaInfo[11].split("_");
+                        } else {
+                            producers = null;
+                        }
                         director = mediaInfo[12];
-                        starActors = mediaInfo[13].split("_");
+                        if (mediaInfo[13] != null) {
+                            starActors = mediaInfo[13].split("_");
+                        } else {
+                            starActors = null;
+                        }
                         mediaList.add(new TvShow(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 seasons, episodes, toArrayList(producers), director, toArrayList(starActors)));
-                        tags = mediaInfo[14].split("_");
+                        if (!mediaInfo[11].equals("No tags")) {
+                            tags = mediaInfo[14].split("_");
+                        } else {
+                            tags = new String[0];
+                        }
                         break;
                     case "M":
                         duration = Integer.parseInt(mediaInfo[9]);
-                        producers = mediaInfo[10].split("_");
+                        if (mediaInfo[10] != null) {
+                            producers = mediaInfo[10].split("_");
+                        } else {
+                            producers = null;
+                        }
                         director = mediaInfo[11];
-                        starActors = mediaInfo[12].split("_");
+                        if (mediaInfo[12] != null) {
+                            starActors = mediaInfo[12].split("_");
+                        } else {
+                            starActors = null;
+                        }
                         mediaList.add(new Movie(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, duration,
                                 toArrayList(producers), director, toArrayList(starActors)));
-                        tags = mediaInfo[13].split("_");
+                        if (!mediaInfo[11].equals("No tags")) {
+                            tags = mediaInfo[13].split("_");
+                        } else {
+                            tags = new String[0];
+                        }
                         break;
                     case "V":
                         playtime = Integer.parseInt(mediaInfo[9]);
-                        devs = mediaInfo[10].split("_");
+                        if (mediaInfo[10] != null) {
+                            devs = mediaInfo[10].split("_");
+                        } else {
+                            devs = null;
+                        }
                         mediaList.add(new VideoGame(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 playtime, toArrayList(devs)));
-                        tags = mediaInfo[11].split("_");
+                        if (!mediaInfo[11].equals("No tags")) {
+                            tags = mediaInfo[11].split("_");
+                        } else {
+                            tags = new String[0];
+                        }
                         break;
                     //Need to initialize 'tags' in default so next for-loop works.
                     default:
@@ -553,57 +589,82 @@ public class MediaLibrary {
                         show = (TvShow) media;
                         writer.write(show.getSeasons() + "~");
                         writer.write(show.getEpisodes() + "~");
-                        for (String producer : show.getProducers()) {
-                            if (show.getProducers().indexOf(producer) == show.getProducers().size() - 1) {
-                                writer.write(producer + "~");
-                            } else {
-                                writer.write(producer + "_");
+                        if (show.getProducers() != null) {
+                            for (String producer : show.getProducers()) {
+                                if (show.getProducers().indexOf(producer) == show.getProducers().size() - 1) {
+                                    writer.write(producer + "~");
+                                } else {
+                                    writer.write(producer + "_");
+                                }
                             }
+                        } else {
+                            writer.write("null" + "~");
                         }
-                        writer.write(show.getDirector() + "~");
-                        for (String actor : show.getStarActors()) {
-                            if (show.getStarActors().indexOf(actor) == show.getStarActors().size() - 1) {
-                                writer.write(actor + "~");
-                            } else {
-                                writer.write(actor + "_");
+                        writer.write(show.getCreator() + "~");
+                        if (show.getStarActors() != null) {
+                            for (String actor : show.getStarActors()) {
+                                if (show.getStarActors().indexOf(actor) == show.getStarActors().size() - 1) {
+                                    writer.write(actor + "~");
+                                } else {
+                                    writer.write(actor + "_");
+                                }
                             }
+                        } else {
+                            writer.write("null" + "~");
                         }
                         break;
                     case "M":
                         movie = (Movie) media;
                         writer.write(movie.getDuration() + "~");
-                        for (String producer : movie.getProducers()) {
-                            if (movie.getProducers().indexOf(producer) == movie.getProducers().size() - 1) {
-                                writer.write(producer + "~");
-                            } else {
-                                writer.write(producer + "_");
+                        if (movie.getProducers() != null) {
+                            for (String producer : movie.getProducers()) {
+                                if (movie.getProducers().indexOf(producer) == movie.getProducers().size() - 1) {
+                                    writer.write(producer + "~");
+                                } else {
+                                    writer.write(producer + "_");
+                                }
                             }
+                        } else {
+                            writer.write("null" + "~");
                         }
                         writer.write(movie.getDirector() + "~");
-                        for (String actor : movie.getStarActors()) {
-                            if (movie.getStarActors().indexOf(actor) == movie.getStarActors().size() - 1) {
-                                writer.write(actor + "~");
-                            } else {
-                                writer.write(actor + "_");
+                        if (movie.getStarActors() != null) {
+                            for (String actor : movie.getStarActors()) {
+                                if (movie.getStarActors().indexOf(actor) == movie.getStarActors().size() - 1) {
+                                    writer.write(actor + "~");
+                                } else {
+                                    writer.write(actor + "_");
+                                }
                             }
+                        } else {
+                            writer.write("null" + "~");
                         }
+
                         break;
                     case "V":
                         game = (VideoGame) media;
                         writer.write(game.getPlaytime() + "~");
-                        for (String dev : game.getDevs()) {
-                            if (game.getDevs().indexOf(dev) == game.getDevs().size() - 1) {
-                                writer.write(dev + "~");
-                            } else {
-                                writer.write(dev + "_");
+                        if (game.getDevs() != null) {
+                            for (String dev : game.getDevs()) {
+                                if (game.getDevs().indexOf(dev) == game.getDevs().size() - 1) {
+                                    writer.write(dev + "~");
+                                } else {
+                                    writer.write(dev + "_");
+                                }
                             }
+                        } else {
+                            writer.write("null" + "~");
                         }
                 }
-                for (String tag : media.getTags()) {
-                    if (media.getTags().indexOf(tag) == media.getTags().size() - 1) {
-                        writer.write(tag);
-                    } else {
-                        writer.write(tag + "_");
+                if (media.getTags().isEmpty()) {
+                    writer.write("No tags");
+                } else {
+                    for (String tag : media.getTags()) {
+                        if (media.getTags().indexOf(tag) == media.getTags().size() - 1) {
+                            writer.write(tag);
+                        } else {
+                            writer.write(tag + "_");
+                        }
                     }
                 }
                 writer.write("\n");

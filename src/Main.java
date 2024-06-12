@@ -10,10 +10,28 @@ public class Main {
 
     public static void main(String[] args) {
         mediaLib = new MediaLibrary();
-        mediaLib.addMedia(new Book("B1234567", "The Odyssey"));
-        mediaLib.addMedia(new Movie("M1234567", "Mulan"));
-        mediaLib.addMedia(new VideoGame("V1234567", "Undertale"));
-        mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad"));
+        mediaLib.addMedia(new Book("B1234567", "The Odyssey", "Homer", 123, 13,
+                "A poem about the story of Odysseus, king of Ithaca, who wanders for 10 years (although the " +
+                        "action of the poem covers only the final six weeks) trying to get home after the Trojan War.",
+                "Penguin Publishing"));
+        mediaLib.addMedia(new Movie("M1234567", "Mulan", 8, "Fearful that her ailing father will be drafted " +
+                "into the Chinese military, Mulan (Ming-Na Wen) takes his spot -- though, as a girl living under a " +
+                "patriarchal regime, she is technically unqualified to serve. She cleverly impersonates a man and goes " +
+                "off to train with fellow recruits. Accompanied by her dragon, Mushu (Eddie Murphy), she uses her smarts" +
+                " to help ward off a Hun invasion, falling in love with a dashing captain along the way.",
+                "Disney", 87, null, "Barry Cook & Tony Bancroft", null));
+        mediaLib.addMedia(new VideoGame("V1234567", "Undertale", 13, "A game where you control a child who has fallen " +
+                "into the Underground: a large, secluded region under the surface of the Earth, separated by a magical " +
+                "barrier. You must get back to the surface either by fighting your way out, or through peaceful means.",
+                "Indie", 420, null));
+        mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad", 18, "Mild-mannered high school chemistry " +
+                "teacher Walter White thinks his life can't get much worse. His salary barely makes ends meet, a " +
+                "situation not likely to improve once his pregnant wife gives birth, and their teenage son is battling " +
+                "cerebral palsy. But Walter is dumbstruck when he learns he has terminal cancer. Realizing that his " +
+                "illness probably will ruin his family financially, Walter makes a desperate bid to earn as much money " +
+                "as he can in the time he has left by turning an old RV into a meth lab on wheels.", "High Bridge " +
+                "Entertainment, Gran Via Productions, Sony Pictures Television", 5, 62, null,
+                "Vince Gilligan", null));
         mediaLib.resetCurrentList(); //Need to load info from mediaList onto currentList.
         intro();
 
