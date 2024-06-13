@@ -5,50 +5,35 @@ public class Main {
     static final String FILE_PATH = "src/";
     static final Scanner READER = new Scanner(System.in);
     static MediaLibrary mediaLib = null;
-
     static final String BACK_VALUE = "back";
 
     public static void main(String[] args) {
-        mediaLib = new MediaLibrary();
-        /*mediaLib.addMedia(new Book("B1234567", "The Odyssey", "Homer", 123, 13,
-                "A poem about the story of Odysseus, king of Ithaca, who wanders for 10 years (although the " +
-                        "action of the poem covers only the final six weeks) trying to get home after the Trojan War.",
-                "Penguin Publishing"));
-        mediaLib.addMedia(new Movie("M1234567", "Mulan", 8, "Fearful that her ailing father will be drafted " +
-                "into the Chinese military, Mulan (Ming-Na Wen) takes his spot -- though, as a girl living under a " +
-                "patriarchal regime, she is technically unqualified to serve. She cleverly impersonates a man and goes " +
-                "off to train with fellow recruits. Accompanied by her dragon, Mushu (Eddie Murphy), she uses her smarts" +
-                " to help ward off a Hun invasion, falling in love with a dashing captain along the way.",
-                "Disney", 87, null, "Barry Cook & Tony Bancroft", null));
-        mediaLib.addMedia(new VideoGame("V1234567", "Undertale", 13, "A game where you control a child who has fallen " +
-                "into the Underground: a large, secluded region under the surface of the Earth, separated by a magical " +
-                "barrier. You must get back to the surface either by fighting your way out, or through peaceful means.",
-                "Indie", 420, null));
-        mediaLib.addMedia(new TvShow("T1234567", "Breaking Bad", 18, "Mild-mannered high school chemistry " +
-                "teacher Walter White thinks his life can't get much worse. His salary barely makes ends meet, a " +
-                "situation not likely to improve once his pregnant wife gives birth, and their teenage son is battling " +
-                "cerebral palsy. But Walter is dumbstruck when he learns he has terminal cancer. Realizing that his " +
-                "illness probably will ruin his family financially, Walter makes a desperate bid to earn as much money " +
-                "as he can in the time he has left by turning an old RV into a meth lab on wheels.", "High Bridge " +
-                "Entertainment, Gran Via Productions, Sony Pictures Television", 5, 62, null,
-                "Vince Gilligan", null));*/
-        mediaLib.resetCurrentList(); //Need to load info from mediaList onto currentList.
         intro();
 
         String choice;
-        String filename = mediaLib.DEFAULT_FILE;
+        String filename = null;
+        
 
         boolean run = true;
         boolean success;
+        boolean isEmpty = true;
 
         while (run) {
 
-            if (mediaLib.getMediaList().isEmpty()) {
+            if (mediaLib == null) {
                 System.out.println("No file has been detected in the system. Please load a file to continue.");
                 choice = "21";
             } else {
+                filename = mediaLib.DEFAULT_FILE;
+                isEmpty = mediaLib.getMediaList().isEmpty();
                 printMenu();
                 choice = getString();
+            }
+
+            if (isEmpty && !choice.equals("0") && !choice.equals("1") && !choice.equals("21") && !choice.equals("22")){
+                System.out.println("Media library is empty. Please add media before continuing with any operations. ");
+                System.out.println("You can currently add media (1), import file (21), export file (21), and exit (0)");
+                choice = null;
             }
 
             switch (choice) {
@@ -58,7 +43,7 @@ public class Main {
                     break;
                 }
 
-                case "1": {     // Load information from file.
+                case "1": {     // Adds media to media library
 
                     boolean invalid_choice = true;
 
@@ -171,21 +156,21 @@ public class Main {
 
                                 int episodes = getInt("Enter the number of episodes in the TV show: ");
 
-                                String director = getString("Enter the TV show's director(s): ");
+                                String creator = getString("Enter the TV show's creator(s): ");
 
                                 ArrayList<String> producers = getArraylist("Enter the producers of the TV Show.");
 
                                 ArrayList<String> starActors = getArraylist("Enter the star actors of the TV Show.");
 
                                 String tail_end = (Integer.toString(name.charAt(0)) +
-                                        Integer.toString(director.charAt(0)) + Integer.toString(seasons).charAt(0) +
+                                        Integer.toString(creator.charAt(0)) + Integer.toString(seasons).charAt(0) +
                                         Integer.toString(age).charAt(0) + Integer.toString(desc.charAt(0)) +
                                         Integer.toString(studio.charAt(0)));
 
                                 id += tail_end.toLowerCase();
 
                                 m = new TvShow(id, name, age, desc, studio, seasons, episodes, producers,
-                                        director, starActors);
+                                        creator, starActors);
                                 invalid_choice = false;
                                 break;
                             }
@@ -201,6 +186,7 @@ public class Main {
 
                     if (m != null) {
                         mediaLib.addMedia(m);
+                        System.out.println("Media added successfully!");
                     }
                     break;
                 }
@@ -213,6 +199,7 @@ public class Main {
                     if (id != null) {
                         mediaLib.removeMedia(id);
                         System.out.println("Media removed successfully.");
+                        mediaLib.resetCurrentList();
                     }
 
                     break;
@@ -576,11 +563,15 @@ public class Main {
                     System.out.println();
                     break;
                 }
+                case null: {
+                    // if media library is empty, we don't want the user to do anything except add media, import, export, and exit.
+                    break;
+                }
                 default: {
                     System.out.println("\nInvalid choice!\n");
                 }
             }
-            if (!choice.equals("0")){
+            if (choice == null || !choice.equals("0")){
                 next();
             }
         }
@@ -595,10 +586,10 @@ public class Main {
      */
     public static Integer getInt(String msg) {
         System.out.println(msg);
-        System.out.print("> ");
         int n;
         while (true) {
             try {
+                System.out.print("> ");
                 n = Integer.parseInt(READER.nextLine());
                 break;
             } catch (NumberFormatException nfe) {

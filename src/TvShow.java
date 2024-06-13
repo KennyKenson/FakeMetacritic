@@ -2,11 +2,12 @@ import java.util.ArrayList;
 
 public class TvShow extends Media {
 
-    int seasons;
-    int episodes;
-    ArrayList<String> producers;
-    String creator;
-    ArrayList<String> starActors;
+    private int seasons;
+    private int episodes;
+    private ArrayList<String> producers;
+    private String creator;
+    private ArrayList<String> starActors;
+
 
     /**
      * Constructor for TvShow.

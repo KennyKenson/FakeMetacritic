@@ -391,7 +391,12 @@ public class MediaLibrary {
      */
     public void printCurrentList() {
         if (currentList.isEmpty()) {
-            System.out.println("Current list has no elements. Retrieving information from media library");
+            System.out.print("Current list has no elements. ");
+            if (mediaList.isEmpty()){
+                System.out.println("Add media to add reviews");
+            } else {
+                System.out.println("Retrieving information from media library");
+            }
             resetCurrentList();
         }
 
