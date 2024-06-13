@@ -25,17 +25,6 @@ public class Book extends Media {
     }
 
     /**
-     * Constructor that requires only name and ID.
-     * @param id
-     * @param name
-     */
-    public Book(String id, String name) {
-        super(id, name);
-        this.pages = 0;
-        this.author = "N/A";
-    }
-
-    /**
      * Constructor that doesn't require a review, rating, watched or lock status.
      * @param id ID of the book.
      * @param name Name of the book.
@@ -51,14 +40,6 @@ public class Book extends Media {
         this.author = author;
     }
 
-    /**
-     * Constructor that requires no parameters.
-     */
-    public Book() {
-        super();
-        this.pages = 0;
-        this.author = "N/A";
-    }
 
     /**
      * Getter for pages.

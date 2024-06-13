@@ -61,22 +61,6 @@ public class TvShow extends Media {
     }
 
     /**
-     * Constructor that requires only name and ID.
-     * @param id ID of the show.
-     * @param name Name of the show.
-     */
-    public TvShow(String id, String name) {
-        super(id, name);
-        this.seasons = 0;
-        this.episodes = 0;
-        this.producers = new ArrayList<>();
-        producers.add("N/A");
-        this.creator = "N/A";
-        this.starActors = new ArrayList<>();
-        starActors.add("N/A");
-    }
-
-    /**
      * Print method for TvShow objects.
      * @return String to be printed.
      */

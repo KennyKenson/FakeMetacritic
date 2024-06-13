@@ -45,18 +45,6 @@ public class VideoGame extends Media {
     }
 
     /**
-     * Constructor that requires only name and ID.
-     * @param id ID of the game.
-     * @param name Name of the game.
-     */
-    public VideoGame(String id, String name) {
-        super(id, name);
-        this.playtime = 0;
-        this.devs = new ArrayList<>();
-        devs.add("N/A");
-    }
-
-    /**
      * Print method for VideoGame objects.
      * @return String to be printed.
      */

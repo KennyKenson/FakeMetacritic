@@ -8,11 +8,11 @@ public class Main {
     static final String BACK_VALUE = "back";
 
     public static void main(String[] args) {
-//        intro();
+        intro();
 
         String choice;
         String filename = null;
-        
+
 
         boolean run = true;
         boolean success;
@@ -30,7 +30,7 @@ public class Main {
                 choice = getString();
             }
 
-            if (isEmpty && !choice.equals("0") && !choice.equals("1") && !choice.equals("21") && !choice.equals("22")){
+            if (isEmpty && !choice.equals("0") && !choice.equals("1") && !choice.equals("21") && !choice.equals("22")) {
                 System.out.println("Media library is empty. Please add media before continuing with any operations. ");
                 System.out.println("You can currently add media (1), import file (21), export file (21), and exit (0)");
                 choice = null;
@@ -375,7 +375,8 @@ public class Main {
                 }
 
                 case "12": {
-                    String id = getValidMedia("Enter the media you want to change the target age of: ", mediaLib.getMediaList());
+                    String id = getValidMedia("Enter the media you want to change the target age of: ",
+                            mediaLib.getMediaList());
 
                     if (id != null) {
                         int age = getInt("Enter the target age of the media: ");
@@ -396,8 +397,9 @@ public class Main {
                     while (isInvalid) {
                         switch (choice) {
                             case "1": {
-                                int age = getInt("Enter the maximum age: ");
+                                int age = getInt("Enter the minimum age: ");
                                 mediaLib.filterMedia(age);
+
                                 isInvalid = false;
                                 System.out.println("Current list successfully filtered");
                                 break;
@@ -511,7 +513,8 @@ public class Main {
                     success = false;
                     mediaLib = new MediaLibrary();
                     while (!success) {
-                        filename = getString("Enter a filename to import. Press enter to use the default file (" + mediaLib.DEFAULT_FILE + ".txt): ");
+                        filename = getString("Enter a filename to import. Press enter to use the default file (" +
+                                mediaLib.DEFAULT_FILE + ".txt): ");
 
                         if (filename.isEmpty()) {
                             filename = mediaLib.DEFAULT_FILE;
@@ -563,14 +566,15 @@ public class Main {
                     break;
                 }
                 case null: {
-                    // if media library is empty, we don't want the user to do anything except add media, import, export, and exit.
+                    // if media library is empty, we don't want the user to do anything except add media, import,
+                    // export, and exit.
                     break;
                 }
                 default: {
                     System.out.println("\nInvalid choice!\n");
                 }
             }
-            if (choice == null || !choice.equals("0")){
+            if (choice == null || !choice.equals("0")) {
                 next();
             }
         }
@@ -584,10 +588,11 @@ public class Main {
      * @return Integer value.
      */
     public static Integer getInt(String msg) {
-        System.out.println(msg);
         int n;
         while (true) {
             try {
+
+                System.out.println(msg);
                 System.out.print("> ");
                 n = Integer.parseInt(READER.nextLine());
                 break;
@@ -649,7 +654,7 @@ public class Main {
     /**
      * Gets valid Media object from user when they input the media's name or ID.
      *
-     * @param msg Message shown to user.
+     * @param msg   Message shown to user.
      * @param media The Media object.
      * @return Valid Media object.
      */
@@ -772,7 +777,7 @@ public class Main {
         }
     }
 
-    public static void credits(){
+    public static void credits() {
         System.out.println("""
                 A database system by Aadhya Anand and Ken Chignell-Mizobuchi.
                 Fake Metacritic is not affiliated with metacritic.com

@@ -58,23 +58,6 @@ public class Movie extends Media {
     }
 
     /**
-     * Constructor that only requires a name and ID.
-     *
-     * @param id Movie's ID.
-     * @param name Name of the movie.
-     */
-    public Movie(String id, String name) {
-        super(id, name);
-        this.duration = 0;
-        this.producers = new ArrayList<>();
-        producers.add("N/A");
-        this.director = "N/A";
-        this.starActors = new ArrayList<>();
-        starActors.add("N/A");
-
-    }
-
-    /**
      * Getter for duration.
      *
      * @return duration
