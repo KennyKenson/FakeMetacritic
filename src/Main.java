@@ -8,7 +8,7 @@ public class Main {
     static final String BACK_VALUE = "back";
 
     public static void main(String[] args) {
-        intro();
+//        intro();
 
         String choice;
         String filename = null;
@@ -396,9 +396,8 @@ public class Main {
                     while (isInvalid) {
                         switch (choice) {
                             case "1": {
-                                int age = getInt("Enter the minimum age: ");
+                                int age = getInt("Enter the maximum age: ");
                                 mediaLib.filterMedia(age);
-
                                 isInvalid = false;
                                 System.out.println("Current list successfully filtered");
                                 break;

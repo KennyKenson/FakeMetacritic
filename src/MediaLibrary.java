@@ -68,7 +68,7 @@ public class MediaLibrary {
      * @param targetAge The target age rating.
      */
     public void filterMedia(int targetAge) {
-        currentList.removeIf(media -> media.getRating() > targetAge);
+        currentList.removeIf(media -> media.getTargetAge() > targetAge);
     }
 
     /**
