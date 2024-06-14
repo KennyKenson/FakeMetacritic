@@ -68,7 +68,7 @@ public class VideoGame extends Media {
         if (!devs.isEmpty()) {
             devsList = devs.get(0);
             for (int i = 1; i < devs.size(); i++) {
-                tagsList += ", " + devs.get(i);
+                devsList += ", " + devs.get(i);
             }
         }
 

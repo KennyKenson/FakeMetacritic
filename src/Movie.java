@@ -119,7 +119,7 @@ public class Movie extends Media {
         if (!producers.isEmpty()) {
             producersList = producers.get(0);
             for (int i = 1; i < producers.size(); i++) {
-                tagsList += ", " + producers.get(i);
+                producersList += ", " + producers.get(i);
             }
         }
 

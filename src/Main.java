@@ -242,22 +242,62 @@ public class Main {
                 }
 
                 case "5": {
-                    String id = unlockMedia(getValidMedia("Select a media to remove rating. " +
-                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-                    if (id != null) {
-                        mediaLib.removeRating(id);
-                        System.out.println("Rating successfully removed. ");
+                    int hasRating = 0;
+                    for (Media m : mediaLib.getMediaList()){
+                        if (!m.getReview().isBlank()){
+                            hasRating++;
+                        }
+                    }
+                    if (hasRating == 0){
+                        System.out.println("None of the media in the library has a rating to remove.");
+                    } else {
+                        String id = null;
+                        boolean isValid = false;
+                        while (!isValid) {
+                            id = unlockMedia(getValidMedia("Select a media to remove rating. " +
+                                    "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
+                            Media m = mediaLib.searchMedia(id);
+                            if (m.getReview().isBlank()) {
+                                isValid = true;
+                            } else {
+                                System.out.println("The media selected already has no rating. Select a different media.");
+                            }
+                        }
+                        if (id != null) {
+                            mediaLib.removeReview(id);
+                            System.out.println("Review successfully removed. ");
+                        }
                     }
 
                     break;
                 }
 
                 case "6": {
-                    String id = unlockMedia(getValidMedia("Select a media to remove review. " +
-                            "Type either the media's name or it's ID: ", mediaLib.getMediaList()));
-                    if (id != null) {
-                        mediaLib.removeReview(id);
-                        System.out.println("Review successfully removed. ");
+                    int hasReview = 0;
+                    for (Media m : mediaLib.getMediaList()){
+                        if (!m.getReview().isBlank()){
+                            hasReview++;
+                        }
+                    }
+                    if (hasReview == 0){
+                        System.out.println("None of the media in the library has a rating to remove.");
+                    } else {
+                        String id = null;
+                        boolean isValid = false;
+                        while (!isValid) {
+                            id = unlockMedia(getValidMedia("Select a media to remove the rating. " +
+                                    "Type either the media's name or its ID: ", mediaLib.getMediaList()));
+                            Media m = mediaLib.searchMedia(id);
+                            if (m.getReview().isBlank()){
+                                isValid = true;
+                            } else {
+                                System.out.println("The media selected already has no review. Select a different media.");
+                            }
+                        }
+                        if (id != null) {
+                            mediaLib.removeReview(id);
+                            System.out.println("Review successfully removed. ");
+                        }
                     }
                     break;
                 }
@@ -307,17 +347,19 @@ public class Main {
                     if (id != null) {
                         Media m = mediaLib.searchMedia(id);
 
-                        System.out.println("Select a status: ");
-                        System.out.println(" 0 > " + Media.WATCHED_STATUS_STRINGS[0]);
-                        System.out.println(" 1 > " + Media.WATCHED_STATUS_STRINGS[1]);
-                        System.out.println(" 2 > " + Media.WATCHED_STATUS_STRINGS[2]);
-                        System.out.println(" 3 > " + Media.WATCHED_STATUS_STRINGS[3]);
-                        System.out.println(" 4 > " + Media.WATCHED_STATUS_STRINGS[4]);
 
-                        choice = getString();
+
                         boolean isInvalid = true;
 
                         while (isInvalid) {
+
+                            choice = getString("Select a status: "
+                                    + "\n 0 > " + Media.WATCHED_STATUS_STRINGS[0]
+                                    + "\n 1 > " + Media.WATCHED_STATUS_STRINGS[1]
+                                    + "\n 2 > " + Media.WATCHED_STATUS_STRINGS[2]
+                                    + "\n 3 > " + Media.WATCHED_STATUS_STRINGS[3]
+                                    + "\n 4 > " + Media.WATCHED_STATUS_STRINGS[4]);
+
                             switch (choice) {
                                 case "0": {
                                     m.changeWatchedStatus(0);
@@ -381,6 +423,7 @@ public class Main {
                     if (id != null) {
                         int age = getInt("Enter the target age of the media: ");
                         mediaLib.setTargetAge(id, age);
+                        System.out.println("Target age changed successfully.");
                     }
 
                     break;

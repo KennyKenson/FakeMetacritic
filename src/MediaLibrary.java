@@ -471,11 +471,7 @@ public class MediaLibrary {
                         author = mediaInfo[10];
                         mediaList.add(new Book(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, pages, author));
-                        if (!mediaInfo[11].equals("No tags")) {
-                            tags = mediaInfo[11].split("_");
-                        } else {
-                            tags = new String[0];
-                        }
+                        tags = mediaInfo[11].split("_");
                         break;
                     case "T":
                         seasons = Integer.parseInt(mediaInfo[9]);
@@ -494,11 +490,7 @@ public class MediaLibrary {
                         mediaList.add(new TvShow(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 seasons, episodes, toArrayList(producers), director, toArrayList(starActors)));
-                        if (!mediaInfo[11].equals("No tags")) {
-                            tags = mediaInfo[14].split("_");
-                        } else {
-                            tags = new String[0];
-                        }
+                        tags = mediaInfo[14].split("_");
                         break;
                     case "M":
                         duration = Integer.parseInt(mediaInfo[9]);
@@ -516,11 +508,8 @@ public class MediaLibrary {
                         mediaList.add(new Movie(id, name, review, rating, targetAge,
                                 false, 0, description, publishing, duration,
                                 toArrayList(producers), director, toArrayList(starActors)));
-                        if (!mediaInfo[11].equals("No tags")) {
-                            tags = mediaInfo[13].split("_");
-                        } else {
-                            tags = new String[0];
-                        }
+                        tags = mediaInfo[13].split("_");
+
                         break;
                     case "V":
                         playtime = Integer.parseInt(mediaInfo[9]);
@@ -532,19 +521,17 @@ public class MediaLibrary {
                         mediaList.add(new VideoGame(id, name, review, rating, targetAge,
                                 false, 0, description, publishing,
                                 playtime, toArrayList(devs)));
-                        if (!mediaInfo[11].equals("No tags")) {
-                            tags = mediaInfo[11].split("_");
-                        } else {
-                            tags = new String[0];
-                        }
+                        tags = mediaInfo[11].split("_");
                         break;
                     //Need to initialize 'tags' in default so next for-loop works.
                     default:
                         tags = new String[0];
                 }
                 for (String tag : tags) {
-                    resetCurrentList();
-                    searchMedia(id).tags.add(tag);
+                    if (!tag.equals("No tags")) {
+                        resetCurrentList();
+                        searchMedia(id).tags.add(tag);
+                    }
                 }
                 line = reader.readLine();
             }
