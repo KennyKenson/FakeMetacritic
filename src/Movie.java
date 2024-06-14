@@ -162,7 +162,7 @@ public class Movie extends Media {
                         Review: %s
                         Rating: %s
                                         """, id, lockedTitle, name, director, producersList, duration, actorsList,
-                publishing, targetAge, watchedStatus, tagsList, description, review, score);
+                publishing, targetAge, getWatchedStatus(), tagsList, description, review, score);
     }
 
     /**
@@ -192,7 +192,7 @@ public class Movie extends Media {
         } else {
             formatted_name = name;
         }
-        System.out.printf("║%-18s║%-18s║   Movie    ║%-14s║%-12s║%-12s║%-9s║\n", formatted_name, id, age, stars,
+        System.out.printf("║%-18s║%-18s║   Movie    ║%-14s║%-12s║%-18s║%-9s║\n", formatted_name, id, age, stars,
                 getWatchedStatus(), isLocked);
 
     }

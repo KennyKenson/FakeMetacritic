@@ -343,7 +343,7 @@ public class MediaLibrary {
      */
     public void addMedia(Media newMedia) {
         mediaList.add(newMedia);
-        //Won't add the media to currentList immediately.
+        resetCurrentList();
     }
 
     /**
@@ -354,6 +354,12 @@ public class MediaLibrary {
         for (Media book : currentList) {
             System.out.println(book);
         }
+
+        if (currentList.isEmpty()) {
+            System.out.println("There are no books in the system.");
+        }
+        resetCurrentList();
+
     }
 
     /**
@@ -364,6 +370,11 @@ public class MediaLibrary {
         for (Media show : currentList) {
             System.out.println(show);
         }
+
+        if (currentList.isEmpty()) {
+            System.out.println("There are no TV show in the system.");
+        }
+        resetCurrentList();
     }
 
     /**
@@ -374,6 +385,11 @@ public class MediaLibrary {
         for (Media movie : currentList) {
             System.out.println(movie);
         }
+
+        if (currentList.isEmpty()) {
+            System.out.println("There are no movies in the system.");
+        }
+        resetCurrentList();
     }
 
     /**
@@ -384,6 +400,11 @@ public class MediaLibrary {
         for (Media videogame : currentList) {
             System.out.println(videogame);
         }
+
+        if (currentList.isEmpty()) {
+            System.out.println("There are no video games in the system.");
+        }
+        resetCurrentList();
     }
 
     /**
@@ -401,17 +422,17 @@ public class MediaLibrary {
         }
 
         System.out.println("""
-                ╔═════════════════════════════════════════════════════════════════════════════════════════════════════╗
-                ║                                        Current List Of Media                                        ║
-                ╠══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦════════════╦═════════╣
-                ║       Name       ║        ID        ║    Type    ║  Age Rating  ║   Rating   ║   Status   ║ Locked? ║
-                ╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬════════════╬═════════╣"""
+                ╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║                                           Current List Of Media                                           ║
+                ╠══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦══════════════════╦═════════╣
+                ║       Name       ║        ID        ║    Type    ║  Age Rating  ║   Rating   ║      Status      ║ Locked? ║
+                ╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬══════════════════╬═════════╣"""
         );
         for (Media m : currentList) {
             m.printDetails();
         }
 
-        System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩════════════╩═════════╝");
+        System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩══════════════════╩═════════╝");
     }
 
     /**

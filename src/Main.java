@@ -83,6 +83,7 @@ public class Main {
                                 m = new Book(id, name, author, pages, age, desc, pub_house);
 
                                 invalid_choice = false;
+
                                 break;
                             }
                             case "2": {
@@ -96,7 +97,7 @@ public class Main {
 
                                 String studio = getString("Enter the movie's studio: ");
 
-                                int duration = getInt("Enter the duration of the movie: ");
+                                int duration = getInt("Enter the duration of the movie in minutes: ");
 
                                 String director = getString("Enter the movie's director(s): ");
 
@@ -126,7 +127,7 @@ public class Main {
 
                                 String studio = getString("Enter the video game's studio: ");
 
-                                int playtime = getInt("Enter the expected duration of the video game: ");
+                                int playtime = getInt("Enter the expected duration of the video game in minutes: ");
 
                                 ArrayList<String> devs = getArraylist("Enter the developers of the game.");
 
@@ -411,6 +412,7 @@ public class Main {
                         Media m = mediaLib.searchMedia(id);
                         ArrayList<String> tags = getArraylist("Enter the tags for " + m.getName() + ": ");
                         m.addTags(tags);
+                        System.out.println("Tags added successfully. View tags in find media (9).");
                     }
 
                     break;
@@ -556,8 +558,9 @@ public class Main {
                     success = false;
                     mediaLib = new MediaLibrary();
                     while (!success) {
-                        filename = getString("Enter a filename to import. Press enter to use the default file (" +
+                        System.out.println("Enter a filename to import. Press enter to use the default file (" +
                                 mediaLib.DEFAULT_FILE + ".txt): ");
+                        filename = getString();
 
                         if (filename.isEmpty()) {
                             filename = mediaLib.DEFAULT_FILE;
@@ -653,9 +656,19 @@ public class Main {
      * @return String from user.
      */
     public static String getString(String msg) {
-        System.out.println(msg);
-        System.out.print("> ");
-        return READER.nextLine();
+        boolean isValid = false;
+        String n = null;
+        while (!isValid) {
+            System.out.println(msg);
+            System.out.print("> ");
+            n = READER.nextLine();
+            if (!n.isBlank()){
+                isValid = true;
+            } else {
+                System.out.println("Can't have an empty input.");
+            }
+        }
+        return n;
     }
 
     /**
@@ -705,13 +718,15 @@ public class Main {
 
         System.out.println(msg);
         System.out.println("""
-                ╔══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦════════════╦═════════╗
-                ║       Name       ║        ID        ║   Type     ║  Age Rating  ║   Rating   ║   Status   ║ Locked? ║
-                ╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬════════════╬═════════╣""");
+                ╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║                                           Current List Of Media                                           ║
+                ╠══════════════════╦══════════════════╦════════════╦══════════════╦════════════╦══════════════════╦═════════╣
+                ║       Name       ║        ID        ║    Type    ║  Age Rating  ║   Rating   ║      Status      ║ Locked? ║
+                ╠══════════════════╬══════════════════╬════════════╬══════════════╬════════════╬══════════════════╬═════════╣""");
         for (Media m : media) {
             m.printDetails();
         }
-        System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩════════════╩═════════╝");
+        System.out.println("╚══════════════════╩══════════════════╩════════════╩══════════════╩════════════╩══════════════════╩═════════╝");
 
         String id = null;
 
@@ -762,7 +777,8 @@ public class Main {
      * Prints an intermediate message before going to the next screen.
      */
     public static void next() {
-        getString("Press enter to continue: ");
+        System.out.println("Press enter to continue: ");
+        getString();
     }
 
     /**

@@ -129,7 +129,7 @@ public class TvShow extends Media {
                         Review: %s
                         Rating: %s
                                         """, id, lockedTitle, name, creator, producersList, seasons, episodes,
-                actorsList, publishing, targetAge, watchedStatus, tagsList, description, review, score);
+                actorsList, publishing, targetAge, getWatchedStatus(), tagsList, description, review, score);
     }
 
     /**
@@ -162,7 +162,7 @@ public class TvShow extends Media {
             formatted_name = name;
         }
 
-        System.out.printf("║%-18s║%-18s║  TV Show   ║%-14s║%-12s║%-12s║%-9s║\n",
+        System.out.printf("║%-18s║%-18s║  TV Show   ║%-14s║%-12s║%-18s║%-9s║\n",
                 formatted_name, id, age, stars, getWatchedStatus(), isLocked);
 
     }

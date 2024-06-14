@@ -86,7 +86,7 @@ public class VideoGame extends Media {
 
         return String.format("""
 
-                        TV Show Viewer: %s
+                        Video Game Viewer: %s
                         %s
                         Name: %s
                         Developers: %s
@@ -102,7 +102,7 @@ public class VideoGame extends Media {
                         Review: %s
                         Rating: %s
                                         """, id, lockedTitle, name, devsList, playtime, publishing,
-                targetAge, watchedStatus, tagsList, description, review, score);
+                targetAge, getWatchedStatus(), tagsList, description, review, score);
     }
 
     /**
@@ -132,7 +132,7 @@ public class VideoGame extends Media {
         } else {
             formatted_name = name;
         }
-        System.out.printf("║%-18s║%-18s║ Video Game ║%-14s║%-12s║%-12s║%-9s║\n", formatted_name, id, age, stars,
+        System.out.printf("║%-18s║%-18s║ Video Game ║%-14s║%-12s║%-18s║%-9s║\n", formatted_name, id, age, stars,
                 getWatchedStatus(), isLocked);
 
     }
